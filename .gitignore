@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 original_version
+*storybook.log
+storybook-static
