@@ -35,7 +35,7 @@ function readPackageJson(): PackageJson {
 }
 
 /**
- * Library build config (ESM-only) for `@devbrock/marvelous-ui`.
+ * Library build config (ESM-only) for `@devbrock/comic-ui`.
  *
  * This is separate from the demo app Vite config (`vite.config.ts`) so the
  * demo can keep its own dev-server settings/plugins.

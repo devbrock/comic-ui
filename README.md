@@ -1,4 +1,4 @@
-# Marvelous UI
+# Comic UI
 
 Comic-inspired React components powered by TailwindCSS.
 
@@ -7,7 +7,7 @@ Think of it like snapping a new LEGO brick into your build: you install the pack
 ## Install
 
 ```bash
-pnpm add @devbrock/marvelous-ui
+pnpm add @devbrock/comic-ui
 ```
 
 ## Tailwind setup (required)
@@ -25,7 +25,7 @@ import type { Config } from "tailwindcss";
 export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@devbrock/marvelous-ui/dist/**/*.{js,cjs,mjs}",
+    "./node_modules/@devbrock/comic-ui/dist/**/*.{js,cjs,mjs}",
   ],
 } satisfies Config;
 ```
@@ -36,13 +36,13 @@ Add a `@source` for the library in your global CSS (the file where you import Ta
 
 ```css
 @import "tailwindcss";
-@source "../node_modules/@devbrock/marvelous-ui/dist/**/*.{js,cjs,mjs}";
+@source "../node_modules/@devbrock/comic-ui/dist/**/*.{js,cjs,mjs}";
 ```
 
 ## Use `Button.Standard`
 
 ```tsx
-import { Button } from "@devbrock/marvelous-ui";
+import { Button } from "@devbrock/comic-ui";
 
 export function Example() {
   return (

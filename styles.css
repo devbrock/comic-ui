@@ -1,8 +1,8 @@
-/* Marvelous UI — default look
+/* Comic UI — default look
  *
  * This file is intentionally plain CSS (no `@tailwind`, no `@apply`).
  * Consumers should import it once (e.g. in their app entry) to get the
- * default Marvelous UI color tokens and basic typography defaults.
+ * default Comic UI color tokens and basic typography defaults.
  *
  * Fonts:
  * - `Bangers` and `Outfit` are referenced but not auto-loaded here.
@@ -144,7 +144,7 @@ h6 {
 /* -----------------------------------------------------------------------------
  * Tailwind v4 compatibility helpers (no Tailwind config required)
  *
- * Marvelous UI components are authored with shadcn-style token classnames
+ * Comic UI components are authored with shadcn-style token classnames
  * (e.g. `bg-primary`, `border-3`, `shadow-ink`, `font-display`).
  *
  * In Tailwind v4 "CSS-first" setups, it’s possible for core utilities to work
