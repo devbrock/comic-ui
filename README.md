@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# Marvelous UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Comic-inspired React components powered by TailwindCSS.
 
-Currently, two official plugins are available:
+Think of it like snapping a new LEGO brick into your build: you install the package, tell Tailwind to “look at it” when generating CSS, then import the components you want.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Install
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm add @devbrock/marvelous-ui
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tailwind setup (required)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Because Tailwind only generates CSS for classnames it can “see”, you must include this library in Tailwind’s scan paths; otherwise `Button.Standard` will render unstyled.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Tailwind v3 (tailwind.config.(js|ts))
+
+Add the library to your `content` globs:
+
+```ts
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+
+export default {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@devbrock/marvelous-ui/dist/**/*.{js,cjs,mjs}",
+  ],
+} satisfies Config;
 ```
+
+### Tailwind v4 (CSS-first)
+
+Add a `@source` for the library in your global CSS (the file where you import Tailwind):
+
+```css
+@import "tailwindcss";
+@source "../node_modules/@devbrock/marvelous-ui/dist/**/*.{js,cjs,mjs}";
+```
+
+## Use `Button.Standard`
+
+```tsx
+import { Button } from "@devbrock/marvelous-ui";
+
+export function Example() {
+  return (
+    <Button.Standard onClick={() => console.log("Pow!")}>
+      Click me
+    </Button.Standard>
+  );
+}
+```
+
+You can also use:
+
+- `Button.Destructive`
+
+## Notes
+
+- The root entrypoint exports `Button`.
+- `Button.Standard` and `Button.Destructive` are pre-wired variants, so you don’t pass a `variant` prop.
