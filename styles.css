@@ -1,0 +1,380 @@
+/* Marvelous UI — default look
+ *
+ * This file is intentionally plain CSS (no `@tailwind`, no `@apply`).
+ * Consumers should import it once (e.g. in their app entry) to get the
+ * default Marvelous UI color tokens and basic typography defaults.
+ *
+ * Fonts:
+ * - `Bangers` and `Outfit` are referenced but not auto-loaded here.
+ *   To match the demo exactly, add them via your app (e.g. Google Fonts).
+ */
+
+:root {
+  /* Comic Book Color Palette */
+  --background: 45 30% 96%;
+  --foreground: 0 0% 5%;
+
+  --card: 45 25% 98%;
+  --card-foreground: 0 0% 5%;
+
+  --popover: 45 25% 98%;
+  --popover-foreground: 0 0% 5%;
+
+  /* Hero Colors - Primary Red */
+  --primary: 0 85% 50%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary - Hero Blue */
+  --secondary: 220 90% 50%;
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted - Page cream tones */
+  --muted: 45 20% 90%;
+  --muted-foreground: 0 0% 35%;
+
+  /* Accent - Hero Yellow */
+  --accent: 45 100% 50%;
+  --accent-foreground: 0 0% 5%;
+
+  --destructive: 0 84% 40%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Ink Black borders */
+  --border: 0 0% 8%;
+  --input: 0 0% 8%;
+  --ring: 0 85% 50%;
+
+  --radius: 0px;
+
+  /* Extended Comic Palette */
+  --hero-red: 0 85% 50%;
+  --hero-blue: 220 90% 50%;
+  --hero-yellow: 45 100% 50%;
+  --ink-black: 0 0% 5%;
+  --page-cream: 45 30% 96%;
+  --mutant-purple: 280 70% 55%;
+  --gamma-green: 120 80% 40%;
+  --cosmic-orange: 25 95% 55%;
+
+  /* Comic Shadows */
+  --shadow-ink: 4px 4px 0px hsl(0 0% 5%);
+  --shadow-impact: 6px 6px 0px hsl(0 0% 5%);
+  --shadow-panel: 3px 3px 0px hsl(0 0% 5%);
+
+  /* Sidebar (kept for compatibility) */
+  --sidebar-background: 45 25% 94%;
+  --sidebar-foreground: 0 0% 5%;
+  --sidebar-primary: 0 85% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 45 100% 50%;
+  --sidebar-accent-foreground: 0 0% 5%;
+  --sidebar-border: 0 0% 8%;
+  --sidebar-ring: 0 85% 50%;
+}
+
+.dark {
+  --background: 220 20% 8%;
+  --foreground: 45 30% 96%;
+
+  --card: 220 20% 12%;
+  --card-foreground: 45 30% 96%;
+
+  --popover: 220 20% 12%;
+  --popover-foreground: 45 30% 96%;
+
+  --primary: 0 85% 55%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 220 90% 55%;
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 220 15% 18%;
+  --muted-foreground: 45 15% 70%;
+
+  --accent: 45 100% 55%;
+  --accent-foreground: 0 0% 5%;
+
+  --destructive: 0 70% 45%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 45 20% 85%;
+  --input: 220 15% 25%;
+  --ring: 0 85% 55%;
+
+  --hero-red: 0 85% 55%;
+  --hero-blue: 220 90% 60%;
+  --hero-yellow: 45 100% 55%;
+  --ink-black: 45 20% 90%;
+  --page-cream: 220 20% 8%;
+  --mutant-purple: 280 70% 60%;
+  --gamma-green: 120 75% 50%;
+  --cosmic-orange: 25 95% 60%;
+
+  --shadow-ink: 4px 4px 0px hsl(45 20% 85%);
+  --shadow-impact: 6px 6px 0px hsl(45 20% 85%);
+  --shadow-panel: 3px 3px 0px hsl(45 20% 85%);
+
+  --sidebar-background: 220 20% 10%;
+  --sidebar-foreground: 45 30% 96%;
+  --sidebar-primary: 0 85% 55%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 45 100% 55%;
+  --sidebar-accent-foreground: 0 0% 5%;
+  --sidebar-border: 45 20% 85%;
+  --sidebar-ring: 0 85% 55%;
+}
+
+/* Minimal defaults (safe plain CSS) */
+html,
+body {
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
+  font-family: Outfit, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Bangers, Impact, sans-serif;
+}
+
+/* -----------------------------------------------------------------------------
+ * Tailwind v4 compatibility helpers (no Tailwind config required)
+ *
+ * Marvelous UI components are authored with shadcn-style token classnames
+ * (e.g. `bg-primary`, `border-3`, `shadow-ink`, `font-display`).
+ *
+ * In Tailwind v4 "CSS-first" setups, it’s possible for core utilities to work
+ * while a user’s Tailwind config (presets/theme extensions) is not applied.
+ * These plain-CSS utilities bridge that gap by mapping the token classnames to
+ * CSS variables declared above.
+ * ---------------------------------------------------------------------------*/
+
+/* Fonts */
+.font-display {
+  font-family: Bangers, Impact, sans-serif;
+}
+
+.font-body {
+  font-family: Outfit, system-ui, sans-serif;
+}
+
+/* Token colors */
+.bg-background {
+  background-color: hsl(var(--background));
+}
+.text-foreground {
+  color: hsl(var(--foreground));
+}
+
+.bg-primary {
+  background-color: hsl(var(--primary));
+}
+.text-primary-foreground {
+  color: hsl(var(--primary-foreground));
+}
+
+.bg-secondary {
+  background-color: hsl(var(--secondary));
+}
+.text-secondary-foreground {
+  color: hsl(var(--secondary-foreground));
+}
+
+.bg-muted {
+  background-color: hsl(var(--muted));
+}
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+
+.bg-accent {
+  background-color: hsl(var(--accent));
+}
+.text-accent-foreground {
+  color: hsl(var(--accent-foreground));
+}
+
+.bg-destructive {
+  background-color: hsl(var(--destructive));
+}
+.text-destructive-foreground {
+  color: hsl(var(--destructive-foreground));
+}
+
+.text-ink {
+  color: hsl(var(--ink-black));
+}
+.border-ink {
+  border-color: hsl(var(--ink-black));
+}
+
+.bg-hero-red {
+  background-color: hsl(var(--hero-red));
+}
+.bg-hero-blue {
+  background-color: hsl(var(--hero-blue));
+}
+.bg-hero-yellow {
+  background-color: hsl(var(--hero-yellow));
+}
+.text-hero-red {
+  color: hsl(var(--hero-red));
+}
+.text-hero-blue {
+  color: hsl(var(--hero-blue));
+}
+.text-hero-yellow {
+  color: hsl(var(--hero-yellow));
+}
+.bg-mutant-purple {
+  background-color: hsl(var(--mutant-purple));
+}
+.bg-gamma-green {
+  background-color: hsl(var(--gamma-green));
+}
+.bg-cosmic-orange {
+  background-color: hsl(var(--cosmic-orange));
+}
+.text-mutant-purple {
+  color: hsl(var(--mutant-purple));
+}
+.text-gamma-green {
+  color: hsl(var(--gamma-green));
+}
+.text-cosmic-orange {
+  color: hsl(var(--cosmic-orange));
+}
+
+/* Border widths used across components */
+.border-3 {
+  border-width: 3px;
+}
+.border-4 {
+  border-width: 4px;
+}
+
+/* Shadows */
+.shadow-ink {
+  box-shadow: var(--shadow-ink);
+}
+.shadow-impact {
+  box-shadow: var(--shadow-impact);
+}
+.shadow-panel {
+  box-shadow: var(--shadow-panel);
+}
+
+/* Ring tokens (works with Tailwind’s ring utilities via CSS vars) */
+.ring-ring {
+  --tw-ring-color: hsl(var(--ring));
+}
+.ring-offset-background {
+  --tw-ring-offset-color: hsl(var(--background));
+}
+
+/* Gradient stop tokens (for `from-*`, `via-*`, `to-*`) */
+.from-hero-yellow {
+  --tw-gradient-from: hsl(var(--hero-yellow)) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsl(var(--hero-yellow) / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.via-cosmic-orange {
+  --tw-gradient-to: hsl(var(--cosmic-orange) / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from),
+    hsl(var(--cosmic-orange)) var(--tw-gradient-via-position),
+    var(--tw-gradient-to);
+}
+.to-hero-red {
+  --tw-gradient-to: hsl(var(--hero-red)) var(--tw-gradient-to-position);
+}
+
+/* Keyframes + animation token classes */
+@keyframes impact {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(4px) rotate(1deg);
+  }
+  60% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  80% {
+    transform: translateX(4px) rotate(1deg);
+  }
+}
+
+@keyframes burst {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--hero-yellow) / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--hero-yellow) / 0.8);
+  }
+}
+
+.animate-impact {
+  animation: impact 0.3s ease-out;
+}
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+.animate-burst {
+  animation: burst 0.5s ease-out;
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Variant helpers for classnames Tailwind would normally generate */
+.hover\:bg-hero-red\/90:hover {
+  background-color: hsl(var(--hero-red) / 0.9);
+}
