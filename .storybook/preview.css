@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/*
+ * Tailwind v4 (CSS-first) scan paths for Storybook.
+ *
+ * Without these, Tailwind won't “see” your component classes and your stories
+ * will render unstyled (because no utilities are generated).
+ */
+@source "../src/**/*.{js,jsx,ts,tsx}";
+@source "../.storybook/**/*.{js,jsx,ts,tsx}";
+
+/* Comic UI tokens + compatibility helpers */
+@import "../styles.css";
