@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ComicBadge.stories";
+
+<Meta of={Stories} />
+
+# ComicBadge
+
+## Description
+
+**ComicBadge** is a comic-themed, opinionated building block (the “special effects layer”).
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { ComicBadge } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof ComicBadge>;
+```
+
+## Anatomy
+
+- **ComicBadge**
+
+## Usage
+
+```tsx
+import { ComicBadge } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <ComicBadge />;
+}
+```

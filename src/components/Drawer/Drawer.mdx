@@ -1,0 +1,52 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Drawer.stories";
+
+<Meta of={Stories} />
+
+# Drawer
+
+## Description
+
+**Drawer** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Drawer } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Drawer>;
+```
+
+## Anatomy
+
+- **Drawer**
+- **DrawerClose**
+- **DrawerContent**
+- **DrawerDescription**
+- **DrawerFooter**
+- **DrawerHeader**
+- **DrawerOverlay**
+- **DrawerPortal**
+- **DrawerTitle**
+- **DrawerTrigger**
+
+## Usage
+
+```tsx
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerPortal, DrawerTitle, DrawerTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Drawer />;
+}
+```

@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./DataTable.stories";
+
+<Meta of={Stories} />
+
+# DataTable
+
+## Description
+
+**DataTable** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { DataTable } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof DataTable>;
+```
+
+## Anatomy
+
+- **DataTable**
+
+## Usage
+
+```tsx
+import { DataTable } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <DataTable />;
+}
+```

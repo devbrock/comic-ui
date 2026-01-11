@@ -1,0 +1,79 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./AlertDialog.stories";
+
+<Meta of={Stories} />
+
+# AlertDialog
+
+## Description
+
+**AlertDialog** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { AlertDialog } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof AlertDialog>;
+```
+
+## Anatomy
+
+- **AlertDialog**
+- **AlertDialogAction**
+- **AlertDialogCancel**
+- **AlertDialogContent**
+- **AlertDialogDescription**
+- **AlertDialogFooter**
+- **AlertDialogHeader**
+- **AlertDialogOverlay**
+- **AlertDialogPortal**
+- **AlertDialogTitle**
+- **AlertDialogTrigger**
+
+## Usage
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@devbrock/comic-ui";
+
+export function Example() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <button>Open</button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+```

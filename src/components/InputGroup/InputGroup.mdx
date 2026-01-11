@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./InputGroup.stories";
+
+<Meta of={Stories} />
+
+# InputGroup
+
+## Description
+
+**InputGroup** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { InputGroup } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof InputGroup>;
+```
+
+## Anatomy
+
+- **InputGroup**
+- **InputGroupAddon**
+- **InputGroupInput**
+
+## Usage
+
+```tsx
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <InputGroup />;
+}
+```

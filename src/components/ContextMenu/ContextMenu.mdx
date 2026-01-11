@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ContextMenu.stories";
+
+<Meta of={Stories} />
+
+# ContextMenu
+
+## Description
+
+**ContextMenu** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { ContextMenu } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof ContextMenu>;
+```
+
+## Anatomy
+
+- **ContextMenu**
+- **ContextMenuCheckboxItem**
+- **ContextMenuContent**
+- **ContextMenuGroup**
+- **ContextMenuItem**
+- **ContextMenuLabel**
+- **ContextMenuPortal**
+- **ContextMenuRadioGroup**
+- **ContextMenuRadioItem**
+- **ContextMenuSeparator**
+- **ContextMenuShortcut**
+- **ContextMenuSub**
+- **ContextMenuSubContent**
+- **ContextMenuSubTrigger**
+- **ContextMenuTrigger**
+
+## Usage
+
+```tsx
+import { ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <ContextMenu />;
+}
+```

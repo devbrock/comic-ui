@@ -1,0 +1,46 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Tabs.stories";
+
+<Meta of={Stories} />
+
+# Tabs
+
+## Description
+
+**Tabs** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Tabs } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Tabs>;
+```
+
+## Anatomy
+
+- **Tabs**
+- **TabsContent**
+- **TabsList**
+- **TabsTrigger**
+
+## Usage
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Tabs />;
+}
+```

@@ -1,0 +1,50 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Table.stories";
+
+<Meta of={Stories} />
+
+# Table
+
+## Description
+
+**Table** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Table } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Table>;
+```
+
+## Anatomy
+
+- **Table**
+- **TableBody**
+- **TableCaption**
+- **TableCell**
+- **TableFooter**
+- **TableHead**
+- **TableHeader**
+- **TableRow**
+
+## Usage
+
+```tsx
+import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Table />;
+}
+```

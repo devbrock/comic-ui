@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Sonner.stories";
+
+<Meta of={Stories} />
+
+# Sonner
+
+## Description
+
+**Sonner** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { SonnerToaster } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof SonnerToaster>;
+```
+
+## Anatomy
+
+- **SonnerToaster**
+
+## Usage
+
+```tsx
+import { SonnerToaster } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <SonnerToaster />;
+}
+```

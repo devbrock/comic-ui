@@ -1,0 +1,46 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Tooltip.stories";
+
+<Meta of={Stories} />
+
+# Tooltip
+
+## Description
+
+**Tooltip** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Tooltip } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Tooltip>;
+```
+
+## Anatomy
+
+- **Tooltip**
+- **TooltipContent**
+- **TooltipProvider**
+- **TooltipTrigger**
+
+## Usage
+
+```tsx
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Tooltip />;
+}
+```

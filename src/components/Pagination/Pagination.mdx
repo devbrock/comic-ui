@@ -1,0 +1,49 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Pagination.stories";
+
+<Meta of={Stories} />
+
+# Pagination
+
+## Description
+
+**Pagination** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Pagination } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Pagination>;
+```
+
+## Anatomy
+
+- **Pagination**
+- **PaginationContent**
+- **PaginationEllipsis**
+- **PaginationItem**
+- **PaginationLink**
+- **PaginationNext**
+- **PaginationPrevious**
+
+## Usage
+
+```tsx
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Pagination />;
+}
+```

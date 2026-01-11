@@ -1,0 +1,52 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Select.stories";
+
+<Meta of={Stories} />
+
+# Select
+
+## Description
+
+**Select** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Select } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Select>;
+```
+
+## Anatomy
+
+- **Select**
+- **SelectContent**
+- **SelectGroup**
+- **SelectItem**
+- **SelectLabel**
+- **SelectScrollDownButton**
+- **SelectScrollUpButton**
+- **SelectSeparator**
+- **SelectTrigger**
+- **SelectValue**
+
+## Usage
+
+```tsx
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Select />;
+}
+```

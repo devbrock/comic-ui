@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./SpeechBubble.stories";
+
+<Meta of={Stories} />
+
+# SpeechBubble
+
+## Description
+
+**SpeechBubble** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { SpeechBubble } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof SpeechBubble>;
+```
+
+## Anatomy
+
+- **SpeechBubble**
+
+## Usage
+
+```tsx
+import { SpeechBubble } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <SpeechBubble />;
+}
+```

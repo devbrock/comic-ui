@@ -1,0 +1,47 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Carousel.stories";
+
+<Meta of={Stories} />
+
+# Carousel
+
+## Description
+
+**Carousel** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Carousel } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Carousel>;
+```
+
+## Anatomy
+
+- **Carousel**
+- **CarouselContent**
+- **CarouselItem**
+- **CarouselNext**
+- **CarouselPrevious**
+
+## Usage
+
+```tsx
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Carousel />;
+}
+```

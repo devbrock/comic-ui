@@ -1,0 +1,51 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Command.stories";
+
+<Meta of={Stories} />
+
+# Command
+
+## Description
+
+**Command** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Command } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Command>;
+```
+
+## Anatomy
+
+- **Command**
+- **CommandDialog**
+- **CommandEmpty**
+- **CommandGroup**
+- **CommandInput**
+- **CommandItem**
+- **CommandList**
+- **CommandSeparator**
+- **CommandShortcut**
+
+## Usage
+
+```tsx
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Command />;
+}
+```

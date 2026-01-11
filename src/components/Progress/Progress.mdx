@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Progress.stories";
+
+<Meta of={Stories} />
+
+# Progress
+
+## Description
+
+**Progress** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Progress } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Progress>;
+```
+
+## Anatomy
+
+- **Progress**
+
+## Usage
+
+```tsx
+import { Progress } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Progress />;
+}
+```

@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./DatePicker.stories";
+
+<Meta of={Stories} />
+
+# DatePicker
+
+## Description
+
+**DatePicker** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { DatePicker } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof DatePicker>;
+```
+
+## Anatomy
+
+- **DatePicker**
+
+## Usage
+
+```tsx
+import { DatePicker } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <DatePicker />;
+}
+```

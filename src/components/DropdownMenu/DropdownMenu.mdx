@@ -1,0 +1,57 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./DropdownMenu.stories";
+
+<Meta of={Stories} />
+
+# DropdownMenu
+
+## Description
+
+**DropdownMenu** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { DropdownMenu } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof DropdownMenu>;
+```
+
+## Anatomy
+
+- **DropdownMenu**
+- **DropdownMenuCheckboxItem**
+- **DropdownMenuContent**
+- **DropdownMenuGroup**
+- **DropdownMenuItem**
+- **DropdownMenuLabel**
+- **DropdownMenuPortal**
+- **DropdownMenuRadioGroup**
+- **DropdownMenuRadioItem**
+- **DropdownMenuSeparator**
+- **DropdownMenuShortcut**
+- **DropdownMenuSub**
+- **DropdownMenuSubContent**
+- **DropdownMenuSubTrigger**
+- **DropdownMenuTrigger**
+
+## Usage
+
+```tsx
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <DropdownMenu />;
+}
+```

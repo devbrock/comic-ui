@@ -1,0 +1,49 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Form.stories";
+
+<Meta of={Stories} />
+
+# Form
+
+## Description
+
+**Form** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Form } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Form>;
+```
+
+## Anatomy
+
+- **Form**
+- **FormControl**
+- **FormDescription**
+- **FormField**
+- **FormItem**
+- **FormLabel**
+- **FormMessage**
+
+## Usage
+
+```tsx
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Form />;
+}
+```

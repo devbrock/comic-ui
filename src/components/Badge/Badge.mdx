@@ -1,0 +1,47 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Badge.stories";
+
+<Meta of={Stories} />
+
+# Badge
+
+## Description
+
+**Badge** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+### All variants
+
+<Canvas of={Stories.AllVariants} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Badge } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Badge>;
+```
+
+## Anatomy
+
+- **Badge**
+
+## Usage
+
+```tsx
+import { Badge } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Badge>Label</Badge>;
+}
+```

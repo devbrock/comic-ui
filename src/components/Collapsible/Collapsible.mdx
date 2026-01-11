@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Collapsible.stories";
+
+<Meta of={Stories} />
+
+# Collapsible
+
+## Description
+
+**Collapsible** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Collapsible } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Collapsible>;
+```
+
+## Anatomy
+
+- **Collapsible**
+- **CollapsibleContent**
+- **CollapsibleTrigger**
+
+## Usage
+
+```tsx
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Collapsible />;
+}
+```

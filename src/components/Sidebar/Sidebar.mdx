@@ -1,0 +1,69 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Sidebar.stories";
+
+<Meta of={Stories} />
+
+# Sidebar
+
+## Description
+
+**Sidebar** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+### All variants
+
+<Canvas of={Stories.AllVariants} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Sidebar } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Sidebar>;
+```
+
+## Anatomy
+
+- **Sidebar**
+- **SidebarContent**
+- **SidebarFooter**
+- **SidebarGroup**
+- **SidebarGroupAction**
+- **SidebarGroupContent**
+- **SidebarGroupLabel**
+- **SidebarHeader**
+- **SidebarInput**
+- **SidebarInset**
+- **SidebarMenu**
+- **SidebarMenuAction**
+- **SidebarMenuBadge**
+- **SidebarMenuButton**
+- **SidebarMenuItem**
+- **SidebarMenuSkeleton**
+- **SidebarMenuSub**
+- **SidebarMenuSubButton**
+- **SidebarMenuSubItem**
+- **SidebarProvider**
+- **SidebarRail**
+- **SidebarSeparator**
+- **SidebarTrigger**
+
+## Usage
+
+```tsx
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarInput, SidebarInset, SidebarMenu, SidebarMenuAction } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Sidebar />;
+}
+```

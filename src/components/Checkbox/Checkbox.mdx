@@ -1,0 +1,48 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Checkbox.stories";
+
+<Meta of={Stories} />
+
+# Checkbox
+
+## Description
+
+**Checkbox** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Checkbox } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Checkbox>;
+```
+
+## Anatomy
+
+- **Checkbox**
+
+## Usage
+
+```tsx
+import { Checkbox } from "@devbrock/comic-ui";
+
+export function Example() {
+  return (
+    <label className="flex items-center gap-2">
+      <Checkbox />
+      <span>Checkbox</span>
+    </label>
+  );
+}
+```

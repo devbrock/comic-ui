@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Popover.stories";
+
+<Meta of={Stories} />
+
+# Popover
+
+## Description
+
+**Popover** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Popover } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Popover>;
+```
+
+## Anatomy
+
+- **Popover**
+- **PopoverContent**
+- **PopoverTrigger**
+
+## Usage
+
+```tsx
+import { Popover, PopoverContent, PopoverTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Popover />;
+}
+```

@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Label.stories";
+
+<Meta of={Stories} />
+
+# Label
+
+## Description
+
+**Label** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Label } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Label>;
+```
+
+## Anatomy
+
+- **Label**
+
+## Usage
+
+```tsx
+import { Label } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Label>Label</Label>;
+}
+```

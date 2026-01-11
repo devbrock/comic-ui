@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ToggleGroup.stories";
+
+<Meta of={Stories} />
+
+# ToggleGroup
+
+## Description
+
+**ToggleGroup** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { ToggleGroup } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof ToggleGroup>;
+```
+
+## Anatomy
+
+- **ToggleGroup**
+- **ToggleGroupItem**
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <ToggleGroup />;
+}
+```

@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./HoverCard.stories";
+
+<Meta of={Stories} />
+
+# HoverCard
+
+## Description
+
+**HoverCard** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { HoverCard } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof HoverCard>;
+```
+
+## Anatomy
+
+- **HoverCard**
+- **HoverCardContent**
+- **HoverCardTrigger**
+
+## Usage
+
+```tsx
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <HoverCard />;
+}
+```

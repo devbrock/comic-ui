@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ComicPanel.stories";
+
+<Meta of={Stories} />
+
+# ComicPanel
+
+## Description
+
+**ComicPanel** is a comic-themed, opinionated building block (the “special effects layer”).
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { ComicPanel } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof ComicPanel>;
+```
+
+## Anatomy
+
+- **ComicPanel**
+
+## Usage
+
+```tsx
+import { ComicPanel } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <ComicPanel />;
+}
+```

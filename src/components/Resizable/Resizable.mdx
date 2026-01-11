@@ -1,0 +1,55 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Resizable.stories";
+
+<Meta of={Stories} />
+
+# Resizable
+
+## Description
+
+**Resizable** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { ResizableHandle } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof ResizableHandle>;
+```
+
+## Anatomy
+
+- **ResizableHandle**
+- **ResizablePanel**
+- **ResizablePanelGroup**
+
+## Usage
+
+```tsx
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@devbrock/comic-ui";
+
+export function Example() {
+  return (
+    <ResizablePanelGroup direction="horizontal" className="h-40 w-[520px] rounded border">
+      <ResizablePanel defaultSize={50}>
+        <div className="p-4 text-sm">Left</div>
+      </ResizablePanel>
+      <ResizableHandle />
+      <ResizablePanel defaultSize={50}>
+        <div className="p-4 text-sm">Right</div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}
+```

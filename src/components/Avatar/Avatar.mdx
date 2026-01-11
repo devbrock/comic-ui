@@ -1,0 +1,45 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Avatar.stories";
+
+<Meta of={Stories} />
+
+# Avatar
+
+## Description
+
+**Avatar** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Avatar } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Avatar>;
+```
+
+## Anatomy
+
+- **Avatar**
+- **AvatarFallback**
+- **AvatarImage**
+
+## Usage
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Avatar />;
+}
+```

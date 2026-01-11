@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Skeleton.stories";
+
+<Meta of={Stories} />
+
+# Skeleton
+
+## Description
+
+**Skeleton** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Skeleton } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Skeleton>;
+```
+
+## Anatomy
+
+- **Skeleton**
+
+## Usage
+
+```tsx
+import { Skeleton } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Skeleton />;
+}
+```

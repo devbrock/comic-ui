@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./NativeSelect.stories";
+
+<Meta of={Stories} />
+
+# NativeSelect
+
+## Description
+
+**NativeSelect** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { NativeSelect } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof NativeSelect>;
+```
+
+## Anatomy
+
+- **NativeSelect**
+
+## Usage
+
+```tsx
+import { NativeSelect } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <NativeSelect placeholder="Type…" />;
+}
+```

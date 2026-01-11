@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Kbd.stories";
+
+<Meta of={Stories} />
+
+# Kbd
+
+## Description
+
+**Kbd** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Kbd } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Kbd>;
+```
+
+## Anatomy
+
+- **Kbd**
+
+## Usage
+
+```tsx
+import { Kbd } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Kbd>Label</Kbd>;
+}
+```

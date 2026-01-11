@@ -1,0 +1,58 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Typography.stories";
+
+<Meta of={Stories} />
+
+# Typography
+
+## Description
+
+**Typography** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Blockquote } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Blockquote>;
+```
+
+## Anatomy
+
+- **Blockquote**
+- **H1**
+- **H2**
+- **H3**
+- **H4**
+- **InlineCode**
+- **Lead**
+- **Muted**
+- **P**
+- **Pre**
+- **Small**
+
+## Usage
+
+```tsx
+import { H1, P } from "@devbrock/comic-ui";
+
+export function Example() {
+  return (
+    <div className="max-w-xl">
+      <H1>Comic UI</H1>
+      <P>Typography primitives.</P>
+    </div>
+  );
+}
+```

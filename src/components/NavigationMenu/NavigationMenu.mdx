@@ -1,0 +1,50 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./NavigationMenu.stories";
+
+<Meta of={Stories} />
+
+# NavigationMenu
+
+## Description
+
+**NavigationMenu** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { NavigationMenu } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof NavigationMenu>;
+```
+
+## Anatomy
+
+- **NavigationMenu**
+- **NavigationMenuContent**
+- **NavigationMenuIndicator**
+- **NavigationMenuItem**
+- **NavigationMenuLink**
+- **NavigationMenuList**
+- **NavigationMenuTrigger**
+- **NavigationMenuViewport**
+
+## Usage
+
+```tsx
+import { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <NavigationMenu />;
+}
+```

@@ -1,0 +1,56 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Sheet.stories";
+
+<Meta of={Stories} />
+
+# Sheet
+
+## Description
+
+**Sheet** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+### All variants
+
+<Canvas of={Stories.AllVariants} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Sheet } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Sheet>;
+```
+
+## Anatomy
+
+- **Sheet**
+- **SheetClose**
+- **SheetContent**
+- **SheetDescription**
+- **SheetFooter**
+- **SheetHeader**
+- **SheetOverlay**
+- **SheetPortal**
+- **SheetTitle**
+- **SheetTrigger**
+
+## Usage
+
+```tsx
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetOverlay, SheetPortal, SheetTitle, SheetTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Sheet />;
+}
+```

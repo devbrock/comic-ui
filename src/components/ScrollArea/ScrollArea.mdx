@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ScrollArea.stories";
+
+<Meta of={Stories} />
+
+# ScrollArea
+
+## Description
+
+**ScrollArea** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { ScrollArea } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof ScrollArea>;
+```
+
+## Anatomy
+
+- **ScrollArea**
+- **ScrollBar**
+
+## Usage
+
+```tsx
+import { ScrollArea, ScrollBar } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <ScrollArea />;
+}
+```

@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Combobox.stories";
+
+<Meta of={Stories} />
+
+# Combobox
+
+## Description
+
+**Combobox** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Combobox } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Combobox>;
+```
+
+## Anatomy
+
+- **Combobox**
+
+## Usage
+
+```tsx
+import { Combobox } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Combobox />;
+}
+```

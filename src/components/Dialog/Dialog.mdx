@@ -1,0 +1,52 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Dialog.stories";
+
+<Meta of={Stories} />
+
+# Dialog
+
+## Description
+
+**Dialog** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Dialog } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Dialog>;
+```
+
+## Anatomy
+
+- **Dialog**
+- **DialogClose**
+- **DialogContent**
+- **DialogDescription**
+- **DialogFooter**
+- **DialogHeader**
+- **DialogOverlay**
+- **DialogPortal**
+- **DialogTitle**
+- **DialogTrigger**
+
+## Usage
+
+```tsx
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Dialog />;
+}
+```

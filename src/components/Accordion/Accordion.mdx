@@ -1,0 +1,53 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Accordion.stories";
+
+<Meta of={Stories} />
+
+# Accordion
+
+## Description
+
+**Accordion** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Accordion } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Accordion>;
+```
+
+## Anatomy
+
+- **Accordion**
+- **AccordionContent**
+- **AccordionItem**
+- **AccordionTrigger**
+
+## Usage
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@devbrock/comic-ui";
+
+export function Example() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is Comic UI?</AccordionTrigger>
+        <AccordionContent>A punchy, comic-inspired component set.</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```

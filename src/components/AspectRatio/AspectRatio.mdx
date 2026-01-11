@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./AspectRatio.stories";
+
+<Meta of={Stories} />
+
+# AspectRatio
+
+## Description
+
+**AspectRatio** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { AspectRatio } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof AspectRatio>;
+```
+
+## Anatomy
+
+- **AspectRatio**
+
+## Usage
+
+```tsx
+import { AspectRatio } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <AspectRatio />;
+}
+```

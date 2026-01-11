@@ -1,0 +1,43 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Empty.stories";
+
+<Meta of={Stories} />
+
+# Empty
+
+## Description
+
+**Empty** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Empty } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Empty>;
+```
+
+## Anatomy
+
+- **Empty**
+
+## Usage
+
+```tsx
+import { Empty } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Empty />;
+}
+```

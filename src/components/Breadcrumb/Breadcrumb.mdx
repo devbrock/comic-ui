@@ -1,0 +1,49 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Breadcrumb.stories";
+
+<Meta of={Stories} />
+
+# Breadcrumb
+
+## Description
+
+**Breadcrumb** is a reusable UI primitive, migrated from the original shadcn-style implementation.
+
+## Variants
+
+### Playground
+
+<Canvas of={Stories.Playground} />
+
+## Props
+
+<ArgTypes of={Stories.Playground} />
+
+### Type definition
+
+```ts
+import type * as React from "react";
+import { Breadcrumb } from "@devbrock/comic-ui";
+
+export type Props = React.ComponentProps<typeof Breadcrumb>;
+```
+
+## Anatomy
+
+- **Breadcrumb**
+- **BreadcrumbEllipsis**
+- **BreadcrumbItem**
+- **BreadcrumbLink**
+- **BreadcrumbList**
+- **BreadcrumbPage**
+- **BreadcrumbSeparator**
+
+## Usage
+
+```tsx
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@devbrock/comic-ui";
+
+export function Example() {
+  return <Breadcrumb />;
+}
+```
