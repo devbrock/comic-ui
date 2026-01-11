@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import { Fragment, useState, type ReactNode } from "react";
+import { Fragment, useState, type ReactElement, type ReactNode } from "react";
 
 import { Button } from "./Button";
 import type { ButtonProps, ButtonVariant } from "./Button";
@@ -111,7 +111,15 @@ const ArrowRight = () => (
   </span>
 );
 
-const wrapIf = (shouldWrap: boolean, content: ReactNode, className: string) =>
+/**
+ * Conditionally wrap a React element, while preserving Storybook's requirement that
+ * story `render` functions return a `ReactElement` (not any `ReactNode`).
+ */
+const wrapIf = <T extends ReactElement>(
+  shouldWrap: boolean,
+  content: T,
+  className: string
+): ReactElement =>
   shouldWrap ? <div className={className}>{content}</div> : content;
 
 const renderButtonLabel = ({
@@ -655,19 +663,26 @@ export const IconOnly: StandardStory = {
     icon: true,
   },
   render: (args) => {
-    const { children: _children, ...buttonArgs } = args;
-
     return (
       <Button.Standard
-        {...buttonArgs}
-        onClick={fn()}
-        ariaLabel={args.ariaLabel}
-        testId={args.testId}
-      >
-        <span aria-hidden="true" className="text-lg leading-none">
-          ★
-        </span>
-      </Button.Standard>
+        {...toButtonProps({
+          ...(() => {
+            const {
+              children: _children,
+              prefix: _prefix,
+              suffix: _suffix,
+              ...rest
+            } = args;
+            return rest;
+          })(),
+          children: (
+            <span aria-hidden="true" className="text-lg leading-none">
+              ★
+            </span>
+          ),
+          onClick: fn(),
+        })}
+      />
     );
   },
 };
