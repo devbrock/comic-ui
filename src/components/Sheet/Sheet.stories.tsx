@@ -27,7 +27,7 @@ export const Playground: Story = {
         <SheetTrigger asChild>
           <button className="border px-3 py-2">Open</button>
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent side={args.side}>
           <SheetHeader>
             <SheetTitle>Sheet</SheetTitle>
             <SheetDescription>Slide-over content.</SheetDescription>
@@ -40,43 +40,81 @@ export const Playground: Story = {
 };
 
 export const AllVariants: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: { controls: { disable: true }, layout: "padded" },
   render: () => {
-    const variants = {
-  "side": [
-    "top",
-    "bottom",
-    "left",
-    "right"
-  ]
-};
-    const keys = Object.keys(variants);
+    const sideOptions = ["top", "bottom", "left", "right"] as const;
+    type SheetSide = (typeof sideOptions)[number];
 
-    /** @type {Array<Record<string, string>>} */
-    const combos = [];
-
-    const build = (idx, acc) => {
-      if (idx >= keys.length) {
-        combos.push(acc);
-        return;
-      }
-      const key = keys[idx];
-      const opts = variants[key] ?? [];
-      for (const opt of opts) {
-        build(idx + 1, { ...acc, [key]: opt });
-      }
+    type VariantColumnSpec = {
+      side: SheetSide;
+      header: string;
     };
 
-    build(0, {});
+    type RowSpec = {
+      description: string;
+    };
+
+    /**
+     * Creates readable headers from `side` ids:
+     * - `top` -> `Top`
+     */
+    function toHeader(side: SheetSide): string {
+      return side.replace(/^\w/, (c) => c.toUpperCase());
+    }
+
+    function SheetPreviewCell(props: { side: SheetSide }) {
+      const { side } = props;
+      const [open, setOpen] = React.useState(false);
+
+      return (
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <button className="border px-3 py-2">Open</button>
+          </SheetTrigger>
+          <SheetContent side={side}>
+            <SheetHeader>
+              <SheetTitle>Sheet</SheetTitle>
+              <SheetDescription>Slide-over content.</SheetDescription>
+            </SheetHeader>
+            <div className="text-sm">Body</div>
+          </SheetContent>
+        </Sheet>
+      );
+    }
+
+    const columns: VariantColumnSpec[] = sideOptions.map((side) => ({
+      side,
+      header: toHeader(side),
+    }));
+
+    const rows: RowSpec[] = [{ description: "Preview (click Open)" }];
 
     return (
-      <div className="flex flex-col gap-4">
-        {combos.map((combo) => (
-          <div key={JSON.stringify(combo)} className="flex items-center gap-4">
-            <div className="w-64 font-mono text-xs">{JSON.stringify(combo)}</div>
-            <Sheet {...(combo as React.ComponentProps<typeof Sheet>)} />
-          </div>
-        ))}
+      <div className="max-w-full overflow-x-auto">
+        <div
+          className="grid gap-x-10 gap-y-6 items-center"
+          style={{
+            gridTemplateColumns: `240px repeat(${columns.length}, minmax(160px, 1fr))`,
+          }}
+        >
+          <div className="text-base font-semibold">Description</div>
+          {columns.map((col) => (
+            <div key={col.side} className="text-base font-semibold">
+              {col.header}
+            </div>
+          ))}
+
+          {rows.map((row) => (
+            <React.Fragment key={row.description}>
+              <div className="text-sm font-semibold">{row.description}</div>
+              {columns.map((col) => (
+                <div key={`${row.description}:${col.side}`} className="flex items-center">
+                  <SheetPreviewCell side={col.side} />
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     );
   },

@@ -27,43 +27,61 @@ export const Playground: Story = {
 };
 
 export const AllVariants: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: { controls: { disable: true }, layout: "padded" },
   render: () => {
-    const variants = {
-  "variant": [
-    "default",
-    "secondary",
-    "destructive",
-    "outline"
-  ]
-};
-    const keys = Object.keys(variants);
+    const variantOptions = ["default", "secondary", "destructive", "outline"] as const;
+    type BadgeVariant = (typeof variantOptions)[number];
 
-    /** @type {Array<Record<string, string>>} */
-    const combos = [];
-
-    const build = (idx, acc) => {
-      if (idx >= keys.length) {
-        combos.push(acc);
-        return;
-      }
-      const key = keys[idx];
-      const opts = variants[key] ?? [];
-      for (const opt of opts) {
-        build(idx + 1, { ...acc, [key]: opt });
-      }
+    type VariantColumnSpec = {
+      variant: BadgeVariant;
+      header: string;
     };
 
-    build(0, {});
+    type RowSpec = {
+      description: string;
+    };
+
+    /**
+     * Creates readable headers from `variant` ids:
+     * - `default` -> `Default`
+     */
+    function toHeader(variant: BadgeVariant): string {
+      return variant.replace(/^\w/, (c) => c.toUpperCase());
+    }
+
+    const columns: VariantColumnSpec[] = variantOptions.map((variant) => ({
+      variant,
+      header: toHeader(variant),
+    }));
+
+    const rows: RowSpec[] = [{ description: "Default" }];
 
     return (
-      <div className="flex flex-col gap-4">
-        {combos.map((combo) => (
-          <div key={JSON.stringify(combo)} className="flex items-center gap-4">
-            <div className="w-64 font-mono text-xs">{JSON.stringify(combo)}</div>
-            <Badge {...(combo as React.ComponentProps<typeof Badge>)}>Badge</Badge>
-          </div>
-        ))}
+      <div className="max-w-full overflow-x-auto">
+        <div
+          className="grid gap-x-10 gap-y-6 items-center"
+          style={{
+            gridTemplateColumns: `240px repeat(${columns.length}, minmax(140px, 1fr))`,
+          }}
+        >
+          <div className="text-base font-semibold">Description</div>
+          {columns.map((col) => (
+            <div key={col.variant} className="text-base font-semibold">
+              {col.header}
+            </div>
+          ))}
+
+          {rows.map((row) => (
+            <React.Fragment key={row.description}>
+              <div className="text-sm font-semibold">{row.description}</div>
+              {columns.map((col) => (
+                <div key={`${row.description}:${col.variant}`} className="flex items-center">
+                  <Badge variant={col.variant}>Badge</Badge>
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     );
   },

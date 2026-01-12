@@ -1,7 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import { Toast, ToastAction, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "./Toast";
+import {
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
+} from "./Toast";
 
 const meta = {
   component: Toast,
@@ -19,50 +27,136 @@ export const Playground: Story = {
     variant: "default",
   },
   argTypes: {
-    variant: { control: "radio", options: ["default","destructive"] },
+    variant: { control: "radio", options: ["default", "destructive"] },
   },
   render: (args) => {
-    return <Toast {...(args as React.ComponentProps<typeof Toast>)} />;
+    const [open, setOpen] = React.useState(true);
+    return (
+      <ToastProvider>
+        <button className="border px-3 py-2" onClick={() => setOpen(true)}>
+          Show toast
+        </button>
+        <Toast open={open} onOpenChange={setOpen} variant={args.variant}>
+          <div className="grid gap-1">
+            <ToastTitle>Scheduled</ToastTitle>
+            <ToastDescription>Your meeting is set for 3pm.</ToastDescription>
+          </div>
+          <ToastClose />
+        </Toast>
+        <ToastViewport />
+      </ToastProvider>
+    );
   },
 };
 
 export const AllVariants: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: { controls: { disable: true }, layout: "padded" },
   render: () => {
-    const variants = {
-  "variant": [
-    "default",
-    "destructive"
-  ]
-};
-    const keys = Object.keys(variants);
+    const variantOptions = ["default", "destructive"] as const;
+    type ToastVariant = (typeof variantOptions)[number];
 
-    /** @type {Array<Record<string, string>>} */
-    const combos = [];
-
-    const build = (idx, acc) => {
-      if (idx >= keys.length) {
-        combos.push(acc);
-        return;
-      }
-      const key = keys[idx];
-      const opts = variants[key] ?? [];
-      for (const opt of opts) {
-        build(idx + 1, { ...acc, [key]: opt });
-      }
+    type VariantColumnSpec = {
+      variant: ToastVariant;
+      header: string;
     };
 
-    build(0, {});
+    type ScenarioSpec = {
+      label: string;
+      withAction?: boolean;
+    };
+
+    type RowSpec = {
+      description: string;
+      withAction?: boolean;
+    };
+
+    /**
+     * Creates readable headers from `variant` ids:
+     * - `default` -> `Default`
+     */
+    function toHeader(variant: ToastVariant): string {
+      return variant.replace(/^\w/, (c) => c.toUpperCase());
+    }
+
+    function ToastPreviewCell(props: {
+      variant: ToastVariant;
+      withAction?: boolean;
+    }) {
+      const { variant, withAction } = props;
+      const [open, setOpen] = React.useState(false);
+
+      return (
+        <>
+          <button className="border px-3 py-2" onClick={() => setOpen(true)}>
+            Show
+          </button>
+          <Toast open={open} onOpenChange={setOpen} variant={variant}>
+            <div className="grid gap-1">
+              <ToastTitle>Scheduled</ToastTitle>
+              <ToastDescription>Your meeting is set for 3pm.</ToastDescription>
+            </div>
+            {withAction ? (
+              <ToastAction altText="Undo" onClick={() => setOpen(false)}>
+                Undo
+              </ToastAction>
+            ) : null}
+            <ToastClose />
+          </Toast>
+        </>
+      );
+    }
+
+    const columns: VariantColumnSpec[] = variantOptions.map((variant) => ({
+      variant,
+      header: toHeader(variant),
+    }));
+
+    const scenarioOptions: readonly ScenarioSpec[] = [
+      { label: "Default" },
+      { label: "with action", withAction: true },
+    ];
+
+    const rows: RowSpec[] = scenarioOptions.map((scenario) => ({
+      description: scenario.label,
+      withAction: scenario.withAction,
+    }));
 
     return (
-      <div className="flex flex-col gap-4">
-        {combos.map((combo) => (
-          <div key={JSON.stringify(combo)} className="flex items-center gap-4">
-            <div className="w-64 font-mono text-xs">{JSON.stringify(combo)}</div>
-            <Toast {...(combo as React.ComponentProps<typeof Toast>)} />
+      <ToastProvider>
+        <div className="max-w-full overflow-x-auto">
+          <div
+            className="grid gap-x-10 gap-y-6 items-center"
+            style={{
+              gridTemplateColumns: `240px repeat(${columns.length}, minmax(180px, 1fr))`,
+            }}
+          >
+            <div className="text-base font-semibold">Description</div>
+            {columns.map((col) => (
+              <div key={col.variant} className="text-base font-semibold">
+                {col.header}
+              </div>
+            ))}
+
+            {rows.map((row) => (
+              <React.Fragment key={row.description}>
+                <div className="text-sm font-semibold">{row.description}</div>
+                {columns.map((col) => (
+                  <div
+                    key={`${row.description}:${col.variant}`}
+                    className="flex items-center gap-2"
+                  >
+                    <ToastPreviewCell
+                      variant={col.variant}
+                      withAction={row.withAction}
+                    />
+                  </div>
+                ))}
+              </React.Fragment>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+        <ToastViewport />
+      </ToastProvider>
     );
   },
 };

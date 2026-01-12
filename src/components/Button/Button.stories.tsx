@@ -37,7 +37,7 @@ export const Playground: Story = {
         "burst",
       ],
     },
-    size: { control: "radio", options: ["default","sm","lg","xl","icon"] },
+    size: { control: "radio", options: ["default", "sm", "lg", "xl", "icon"] },
   },
   render: (args) => {
     return (
@@ -55,66 +55,207 @@ export const Playground: Story = {
 };
 
 export const AllVariants: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: { controls: { disable: true }, layout: "padded" },
   render: () => {
-    const variants = {
-  "variant": [
-    "default",
-    "destructive",
-    "outline",
-    "secondary",
-    "ghost",
-    "link",
-    "impact",
-    "hero",
-    "heroBlue",
-    "mutant",
-    "gamma",
-    "burst"
-  ],
-  "size": [
-    "default",
-    "sm",
-    "lg",
-    "xl",
-    "icon"
-  ]
-};
-    const keys = Object.keys(variants);
+    const variantOptions = [
+      "default",
+      "destructive",
+      "outline",
+      "secondary",
+      "ghost",
+      "link",
+      "impact",
+      "hero",
+      "heroBlue",
+      "mutant",
+      "gamma",
+      "burst",
+    ] as const;
 
-    /** @type {Array<Record<string, string>>} */
-    const combos = [];
+    const sizeOptions = ["default", "sm", "lg", "xl", "icon"] as const;
 
-    const build = (idx, acc) => {
-      if (idx >= keys.length) {
-        combos.push(acc);
-        return;
-      }
-      const key = keys[idx];
-      const opts = variants[key] ?? [];
-      for (const opt of opts) {
-        build(idx + 1, { ...acc, [key]: opt });
-      }
+    type ButtonVariant = (typeof variantOptions)[number];
+    type ButtonSize = (typeof sizeOptions)[number];
+
+    type VariantColumnSpec = {
+      variant: ButtonVariant;
+      header: string;
     };
 
-    build(0, {});
+    type RowSpec = {
+      description: string;
+      size: ButtonSize;
+      disabled?: boolean;
+      prefix?: boolean;
+      suffix?: boolean;
+      isLoading?: boolean;
+      /**
+       * Only visually affects the `link` variant (others ignore it safely).
+       */
+      noUnderline?: boolean;
+    };
+
+    /**
+     * Renders button label content with optional prefix/suffix “icons”.
+     * We use simple arrows so the story stays dependency-free.
+     */
+    function ButtonLabel(props: {
+      prefix?: boolean;
+      suffix?: boolean;
+      children?: React.ReactNode;
+    }) {
+      const { prefix, suffix, children } = props;
+      return (
+        <>
+          {prefix ? (
+            <span aria-hidden="true" className="-ml-1 text-xl leading-none">
+              ←
+            </span>
+          ) : null}
+          <span>{children}</span>
+          {suffix ? (
+            <span aria-hidden="true" className="-mr-1 text-xl leading-none">
+              →
+            </span>
+          ) : null}
+        </>
+      );
+    }
+
+    function LoadingGlyph() {
+      return (
+        <span
+          aria-hidden="true"
+          className="inline-block size-5 animate-spin rounded-full border-2 border-current border-t-transparent"
+        />
+      );
+    }
+
+    /**
+     * Creates readable headers from `variant` ids:
+     * - `heroBlue` -> `Hero Blue`
+     * - `gamma` -> `Gamma`
+     */
+    function toHeader(variant: ButtonVariant): string {
+      return variant
+        .replace(/([a-z])([A-Z])/g, "$1 $2")
+        .replace(/^\w/, (c) => c.toUpperCase());
+    }
+
+    const columns: VariantColumnSpec[] = variantOptions.map((variant) => ({
+      variant,
+      header: toHeader(variant),
+    }));
+
+    /**
+     * A single, widened shape for scenario rows.
+     *
+     * Without this, TypeScript infers a union of object literals (because some
+     * entries omit keys), which makes reads like `scenario.disabled` fail.
+     */
+    type ScenarioOption = {
+      label: string;
+      disabled?: boolean;
+      prefix?: boolean;
+      suffix?: boolean;
+      isLoading?: boolean;
+      noUnderline?: boolean;
+    };
+
+    const scenarioOptions: readonly ScenarioOption[] = [
+      {
+        label: "disabled, prefix, suffix",
+        disabled: true,
+        prefix: true,
+        suffix: true,
+      },
+      { label: "disabled, prefix", disabled: true, prefix: true },
+      { label: "disabled, suffix", disabled: true, suffix: true },
+      { label: "disabled", disabled: true },
+      { label: "prefix, suffix", prefix: true, suffix: true },
+      { label: "prefix", prefix: true },
+      { label: "suffix", suffix: true },
+      { label: "Default" },
+      { label: "isLoading", isLoading: true },
+      { label: "default, no underline", noUnderline: true },
+      { label: "disabled, no underline", disabled: true, noUnderline: true },
+    ];
+
+    const rows: RowSpec[] = sizeOptions.flatMap((size) =>
+      scenarioOptions.map((scenario) => ({
+        description: `${scenario.label} · size=${size}`,
+        size,
+        disabled: scenario.disabled,
+        prefix: scenario.prefix,
+        suffix: scenario.suffix,
+        isLoading: scenario.isLoading,
+        noUnderline: scenario.noUnderline,
+      }))
+    );
 
     return (
-      <div className="flex flex-col gap-4">
-        {combos.map((combo) => (
-          <div key={JSON.stringify(combo)} className="flex items-center gap-4">
-            <div className="w-64 font-mono text-xs">{JSON.stringify(combo)}</div>
-            <Button {...(combo as React.ComponentProps<typeof Button>)}>
-              {combo.size === "icon" ? (
-                <span aria-hidden="true" className="text-lg leading-none">
-                  ★
-                </span>
-              ) : (
-                "Pow!"
-              )}
-            </Button>
-          </div>
-        ))}
+      <div className="max-w-full overflow-x-auto">
+        <div
+          className="grid gap-x-10 gap-y-6 items-center"
+          style={{
+            gridTemplateColumns: `240px repeat(${columns.length}, minmax(140px, 1fr))`,
+          }}
+        >
+          <div className="text-base font-semibold">Description</div>
+          {columns.map((col) => (
+            <div key={col.variant} className="text-base font-semibold">
+              {col.header}
+            </div>
+          ))}
+
+          {rows.map((row) => (
+            <React.Fragment key={row.description}>
+              <div className="text-sm font-semibold">{row.description}</div>
+
+              {columns.map((col) => {
+                const linkUnderlineClass =
+                  row.noUnderline && col.variant === "link"
+                    ? "no-underline hover:no-underline"
+                    : undefined;
+
+                const disabled = Boolean(row.disabled || row.isLoading);
+                const ariaBusy = row.isLoading ? true : undefined;
+
+                return (
+                  <div
+                    key={`${row.description}:${col.variant}`}
+                    className="flex items-center"
+                  >
+                    <Button
+                      variant={col.variant}
+                      size={row.size}
+                      disabled={disabled}
+                      aria-busy={ariaBusy}
+                      className={linkUnderlineClass}
+                    >
+                      {row.isLoading ? (
+                        <LoadingGlyph />
+                      ) : (
+                        <ButtonLabel prefix={row.prefix} suffix={row.suffix}>
+                          {row.size === "icon" ? (
+                            <span
+                              aria-hidden="true"
+                              className="text-lg leading-none"
+                            >
+                              ★
+                            </span>
+                          ) : (
+                            "Label"
+                          )}
+                        </ButtonLabel>
+                      )}
+                    </Button>
+                  </div>
+                );
+              })}
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     );
   },
