@@ -42,13 +42,20 @@ export default {
 
 ### Tailwind v4 (CSS-first)
 
-Add a `@source` for the library in your global CSS (the file where you import Tailwind):
+Add a `@source` for the library in your global CSS (the file where you `@import "tailwindcss";`).
+
+**Important:** the `@source` path is resolved **relative to that CSS file**, so you may need to adjust the number of `../` segments depending on where your global CSS lives.
 
 ```css
 @import "tailwindcss";
 @source "../node_modules/@devbrock/comic-ui/dist/**/*.{js,cjs,mjs}";
 @import "@devbrock/comic-ui/styles.css";
 ```
+
+For example:
+
+- If your global CSS is `src/index.css` (common in Vite/CRA), `../node_modules/...` is usually correct.
+- If your global CSS is `app/globals.css` (common in Next.js), you’ll likely want `../node_modules/...` only if `app/` sits at the project root; otherwise adjust accordingly.
 
 ## Use `Button`
 
