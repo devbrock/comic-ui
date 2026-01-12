@@ -50,7 +50,7 @@ const LandingPage = () => {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden ">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -58,8 +58,8 @@ function HeroSection() {
       />
 
       {/* Light wash + bottom fade (match the softer cover look) */}
-      <div className="absolute inset-0 bg-background/75" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/75" />
+      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 " />
 
       {/* Speed Lines */}
       <SpeedLines direction="radial" intensity="light" />
@@ -75,7 +75,7 @@ function HeroSection() {
           </span>
         </h1>
 
-        <p className="mt-6 font-body text-xl md:text-2xl text-white max-w-3xl mx-auto bg-black/50">
+        <p className="mt-6 font-body text-xl md:text-2xl text-white/90 max-w-3xl mx-auto text-shadow-sm">
           A comic book-inspired React component library built on shadcn/ui.
           Bold. Dynamic. Heroic.
         </p>
