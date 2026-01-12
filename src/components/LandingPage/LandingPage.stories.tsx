@@ -107,7 +107,8 @@ function HeroSection() {
 
 function SetupSection() {
   const installCmd = "pnpm add @devbrock/comic-ui";
-
+  const baseStylesImport = `import "@devbrock/comic-ui/styles.css";`;
+  /* @ts-ignore */
   const tailwindV3Config = `// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
@@ -119,7 +120,8 @@ export default {
 } satisfies Config;`;
 
   const tailwindV4Css = `@import "tailwindcss";
-@source "../node_modules/@devbrock/comic-ui/dist/**/*.{js,cjs,mjs}";`;
+@source "../node_modules/@devbrock/comic-ui/dist/**/*.{js,cjs,mjs}";
+@import "@devbrock/comic-ui/styles.css";`;
 
   return (
     <section id="get-started" className="py-20 bg-muted scroll-mt-10">
@@ -159,16 +161,16 @@ export default {
             <ComicPanel variant="thick" cornerLabel="2">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-display text-xl">Tailwind v3 (Config)</h3>
+                  <h3 className="font-display text-xl">Base Styles</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Add Comic UI to Tailwind's content globs.
+                    Import the default tokens + animation helpers once.
                   </p>
                 </div>
-                <CopyButton text={tailwindV3Config} />
+                <CopyButton text={baseStylesImport} />
               </div>
               <pre className="mt-4 rounded-md border-2 border-ink bg-background p-4 overflow-auto">
                 <code className="font-mono text-xs whitespace-pre">
-                  {tailwindV3Config}
+                  {baseStylesImport}
                 </code>
               </pre>
             </ComicPanel>
@@ -176,10 +178,9 @@ export default {
             <ComicPanel variant="thick" cornerLabel="3">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-display text-xl">Tailwind v4 (CSS)</h3>
+                  <h3 className="font-display text-xl">Tailwind</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Add an <code className="font-mono">@source</code> so
-                    Tailwind can see Comic UI's class names.
+                    Tell Tailwind where to scan Comic UI’s class names.
                   </p>
                 </div>
                 <CopyButton text={tailwindV4Css} />

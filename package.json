@@ -21,14 +21,15 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "sideEffects": [
     "**/*.css"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "build": "vite build && tsc -p tsconfig.build.json && node scripts/copy-styles.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 --initial-path=/story/landing-index--catalog",
