@@ -170,6 +170,20 @@ h6 {
   color: hsl(var(--foreground));
 }
 
+.bg-card {
+  background-color: hsl(var(--card));
+}
+.text-card-foreground {
+  color: hsl(var(--card-foreground));
+}
+
+.bg-popover {
+  background-color: hsl(var(--popover));
+}
+.text-popover-foreground {
+  color: hsl(var(--popover-foreground));
+}
+
 .bg-primary {
   background-color: hsl(var(--primary));
 }
@@ -203,6 +217,16 @@ h6 {
 }
 .text-destructive-foreground {
   color: hsl(var(--destructive-foreground));
+}
+
+.bg-border {
+  background-color: hsl(var(--border));
+}
+.border-border {
+  border-color: hsl(var(--border));
+}
+.border-input {
+  border-color: hsl(var(--input));
 }
 
 .text-ink {
