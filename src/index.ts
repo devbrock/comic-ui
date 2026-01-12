@@ -1,3 +1,22 @@
+/**
+ * Comic UI (Marvelous UI compatible)
+ *
+ * Public API surface for the component library.
+ */
+
+"use client";
+
+// Utilities
+export { cn } from "./lib/utils";
+
+// Hooks
+export { useToast, toast } from "./hooks/use-toast";
+export { useIsMobile } from "./hooks/use-mobile";
+
+// Comic components
+export * from "./components/comic";
+
+// UI components (folder-per-component exports)
 export * from "./components/Accordion";
 export * from "./components/Alert";
 export * from "./components/AlertDialog";
@@ -14,21 +33,19 @@ export * from "./components/Chart";
 export * from "./components/Checkbox";
 export * from "./components/Collapsible";
 export * from "./components/Combobox";
-export * from "./components/ComicBadge";
-export * from "./components/ComicPanel";
 export * from "./components/Command";
 export * from "./components/ContextMenu";
+export * from "./components/CopyButton";
 export * from "./components/DataTable";
 export * from "./components/DatePicker";
 export * from "./components/Dialog";
 export * from "./components/Drawer";
 export * from "./components/DropdownMenu";
 export * from "./components/Empty";
+export * from "./components/ExampleCard";
 export * from "./components/Field";
 export * from "./components/Form";
-export * from "./components/HalftoneBackground";
 export * from "./components/HoverCard";
-export * from "./components/ImpactText";
 export * from "./components/Input";
 export * from "./components/InputGroup";
 export * from "./components/InputOTP";
@@ -52,8 +69,6 @@ export * from "./components/Sidebar";
 export * from "./components/Skeleton";
 export * from "./components/Slider";
 export * from "./components/Sonner";
-export * from "./components/SpeechBubble";
-export * from "./components/SpeedLines";
 export * from "./components/Spinner";
 export * from "./components/Switch";
 export * from "./components/Table";
@@ -65,5 +80,3 @@ export * from "./components/Toggle";
 export * from "./components/ToggleGroup";
 export * from "./components/Tooltip";
 export * from "./components/Typography";
-export * from "./hooks/use-mobile";
-export * from "./hooks/use-toast";
