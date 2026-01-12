@@ -1103,7 +1103,7 @@ function DashboardStory() {
                   </p>
                 </div>
                 <div className="hidden sm:flex items-center gap-2">
-                  <Button type="button" variant="burst" onClick={openCreate}>
+                  <Button type="button" variant="hero" onClick={openCreate}>
                     <Plus className="h-5 w-5" />
                     New Ticket
                   </Button>
@@ -1114,7 +1114,7 @@ function DashboardStory() {
                 value={activeTab}
                 onValueChange={(v) => setActiveTab(v as DashboardTab)}
               >
-                <TabsList>
+                <TabsList className="mb-4">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
                   <TabsTrigger value="tickets">Tickets</TabsTrigger>
                   <TabsTrigger value="settings">Settings</TabsTrigger>
