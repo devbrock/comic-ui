@@ -76,7 +76,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
       <Comp
         ref={ref}
         className={cn(
-          "font-display uppercase tracking-wide underline-offset-4 hover:underline",
+          "cursor-pointer font-display uppercase tracking-wide underline-offset-4 hover:underline",
           resolvedClassName,
           isActive && activeClassName,
           isPending && pendingClassName

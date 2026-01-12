@@ -31,19 +31,29 @@ export function ComicPanel({
   const variantStyles = {
     default: "border-3 border-ink shadow-panel",
     thick: "border-4 border-ink shadow-impact",
-    double: "border-4 border-ink shadow-impact ring-2 ring-ink ring-offset-2 ring-offset-background",
-    action: "border-4 border-ink shadow-impact bg-gradient-to-br from-hero-yellow/20 to-transparent",
+    double:
+      "border-4 border-ink shadow-impact ring-2 ring-ink ring-offset-2 ring-offset-background",
+    action:
+      "border-4 border-ink shadow-impact bg-gradient-to-br from-hero-yellow/20 to-transparent",
   };
 
   return (
-    <div className={cn("relative bg-card", variantStyles[variant], className)} {...props}>
+    <div
+      className={cn("relative bg-card", variantStyles[variant], className)}
+      {...props}
+    >
       {cornerLabel && (
         <div className="pointer-events-none absolute -top-4 -left-2 bg-hero-yellow border-2 border-ink px-3 py-1 font-display text-sm text-ink shadow-panel z-10">
           {cornerLabel}
         </div>
       )}
       {headerLabel && (
-        <div className="bg-ink text-primary-foreground px-4 py-2 font-display text-lg uppercase tracking-wider">
+        <div
+          className={cn(
+            "bg-ink text-background px-4 py-2 font-display text-lg uppercase tracking-wider",
+            cornerLabel && "pl-12"
+          )}
+        >
           {headerLabel}
         </div>
       )}
@@ -51,4 +61,3 @@ export function ComicPanel({
     </div>
   );
 }
-

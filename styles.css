@@ -166,6 +166,9 @@ h6 {
 .bg-background {
   background-color: hsl(var(--background));
 }
+.text-background {
+  color: hsl(var(--background));
+}
 .text-foreground {
   color: hsl(var(--foreground));
 }
@@ -229,8 +232,33 @@ h6 {
   border-color: hsl(var(--input));
 }
 
+.bg-sidebar {
+  background-color: hsl(var(--sidebar-background));
+}
+.text-sidebar-foreground {
+  color: hsl(var(--sidebar-foreground));
+}
+.bg-sidebar-primary {
+  background-color: hsl(var(--sidebar-primary));
+}
+.text-sidebar-primary-foreground {
+  color: hsl(var(--sidebar-primary-foreground));
+}
+.bg-sidebar-accent {
+  background-color: hsl(var(--sidebar-accent));
+}
+.text-sidebar-accent-foreground {
+  color: hsl(var(--sidebar-accent-foreground));
+}
+.border-sidebar-border {
+  border-color: hsl(var(--sidebar-border));
+}
+
 .text-ink {
   color: hsl(var(--ink-black));
+}
+.bg-ink {
+  background-color: hsl(var(--ink-black));
 }
 .border-ink {
   border-color: hsl(var(--ink-black));
@@ -295,6 +323,9 @@ h6 {
 /* Ring tokens (works with Tailwind’s ring utilities via CSS vars) */
 .ring-ring {
   --tw-ring-color: hsl(var(--ring));
+}
+.ring-sidebar-ring {
+  --tw-ring-color: hsl(var(--sidebar-ring));
 }
 .ring-offset-background {
   --tw-ring-offset-color: hsl(var(--background));
