@@ -1,7 +1,7 @@
 {
   "name": "@devbrock/comic-ui",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Comic UI is a comic-inspired React component library, delivering a bold, pop-art design system inspired by classic and 90s Marvel comics.",
   "author": "Brock Balducci",
   "license": "MIT",
