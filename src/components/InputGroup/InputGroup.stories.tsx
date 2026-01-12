@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import { InputGroup } from "./InputGroup";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "./InputGroup";
 
 const meta = {
   component: InputGroup,
@@ -20,6 +20,13 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <InputGroup {...(args as React.ComponentProps<typeof InputGroup>)} />;
+    return (
+      <div className="w-[420px]">
+        <InputGroup {...(args as React.ComponentProps<typeof InputGroup>)}>
+          <InputGroupAddon>@</InputGroupAddon>
+          <InputGroupInput position="right" placeholder="username" aria-label="username" />
+        </InputGroup>
+      </div>
+    );
   },
 };

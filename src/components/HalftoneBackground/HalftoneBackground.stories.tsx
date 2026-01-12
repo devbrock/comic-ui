@@ -20,6 +20,21 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <HalftoneBackground {...(args as React.ComponentProps<typeof HalftoneBackground>)} />;
+    return (
+      <HalftoneBackground
+        className="h-[200px] w-[360px] overflow-hidden rounded-md border-2 border-ink bg-card shadow-panel"
+        variant="dots"
+        color="ink"
+        opacity={0.12}
+        {...(args as React.ComponentProps<typeof HalftoneBackground>)}
+      >
+        <div className="p-4">
+          <div className="font-display text-xl uppercase">Pow!</div>
+          <div className="mt-1 font-body text-sm text-muted-foreground">
+            Halftone pattern behind normal content.
+          </div>
+        </div>
+      </HalftoneBackground>
+    );
   },
 };

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
 import { Field } from "./Field";
+import { Input } from "@/components/Input";
 
 const meta = {
   component: Field,
@@ -20,6 +21,18 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Field {...(args as React.ComponentProps<typeof Field>)} />;
+    return (
+      <div className="w-[360px]">
+        <Field
+          label="Email"
+          htmlFor="field-email"
+          description="We’ll never share your email."
+          required
+          {...(args as React.ComponentProps<typeof Field>)}
+        >
+          <Input id="field-email" placeholder="brock@example.com" />
+        </Field>
+      </div>
+    );
   },
 };

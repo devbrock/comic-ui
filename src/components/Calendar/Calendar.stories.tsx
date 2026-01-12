@@ -20,6 +20,17 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Calendar {...(args as React.ComponentProps<typeof Calendar>)} />;
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
+    return (
+      <div className="rounded-md border-2 border-ink bg-card shadow-panel">
+        <Calendar
+          mode="single"
+          selected={selected}
+          onSelect={setSelected}
+          className="p-3"
+          {...(args as React.ComponentProps<typeof Calendar>)}
+        />
+      </div>
+    );
   },
 };

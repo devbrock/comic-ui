@@ -20,6 +20,25 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Combobox {...(args as React.ComponentProps<typeof Combobox>)} />;
+    const items = [
+      { value: "spiderman", label: "Spider-Man" },
+      { value: "storm", label: "Storm" },
+      { value: "wolverine", label: "Wolverine" },
+      { value: "deadpool", label: "Deadpool", disabled: true },
+    ] as const;
+
+    const [value, setValue] = React.useState<string | undefined>("spiderman");
+
+    return (
+      <div className="w-[360px]">
+        <Combobox
+          items={items}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Pick a hero..."
+          {...(args as React.ComponentProps<typeof Combobox>)}
+        />
+      </div>
+    );
   },
 };

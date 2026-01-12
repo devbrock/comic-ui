@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
 import { ButtonGroup } from "./ButtonGroup";
+import { Button } from "@/components/Button";
 
 const meta = {
   component: ButtonGroup,
@@ -20,6 +21,12 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <ButtonGroup {...(args as React.ComponentProps<typeof ButtonGroup>)} />;
+    return (
+      <ButtonGroup {...(args as React.ComponentProps<typeof ButtonGroup>)}>
+        <Button variant="outline">Left</Button>
+        <Button variant="outline">Middle</Button>
+        <Button variant="outline">Right</Button>
+      </ButtonGroup>
+    );
   },
 };

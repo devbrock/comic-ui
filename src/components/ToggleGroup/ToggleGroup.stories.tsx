@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import { ToggleGroup } from "./ToggleGroup";
+import { ToggleGroup, ToggleGroupItem } from "./ToggleGroup";
 
 const meta = {
   component: ToggleGroup,
@@ -20,6 +20,16 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <ToggleGroup {...(args as React.ComponentProps<typeof ToggleGroup>)} />;
+    return (
+      <ToggleGroup
+        type="single"
+        defaultValue="left"
+        {...(args as React.ComponentProps<typeof ToggleGroup>)}
+      >
+        <ToggleGroupItem value="left">Left</ToggleGroupItem>
+        <ToggleGroupItem value="center">Center</ToggleGroupItem>
+        <ToggleGroupItem value="right">Right</ToggleGroupItem>
+      </ToggleGroup>
+    );
   },
 };

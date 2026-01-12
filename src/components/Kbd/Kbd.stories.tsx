@@ -20,6 +20,13 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Kbd {...(args as React.ComponentProps<typeof Kbd>)} />;
+    return (
+      <div className="flex items-center gap-2 font-body text-sm">
+        <span>Press</span>
+        <Kbd {...(args as React.ComponentProps<typeof Kbd>)}>⌘</Kbd>
+        <Kbd {...(args as React.ComponentProps<typeof Kbd>)}>K</Kbd>
+        <span>to search</span>
+      </div>
+    );
   },
 };

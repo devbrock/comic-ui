@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import { Item } from "./Item";
+import { Item, ItemDescription, ItemTitle } from "./Item";
+import { Button } from "@/components/Button";
 
 const meta = {
   component: Item,
@@ -20,6 +21,18 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Item {...(args as React.ComponentProps<typeof Item>)} />;
+    return (
+      <div className="w-[520px]">
+        <Item {...(args as React.ComponentProps<typeof Item>)}>
+          <div>
+            <ItemTitle>Issue #42</ItemTitle>
+            <ItemDescription>Fix story “blank” states</ItemDescription>
+          </div>
+          <Button type="button" size="sm" variant="outline">
+            Open
+          </Button>
+        </Item>
+      </div>
+    );
   },
 };

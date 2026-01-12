@@ -20,6 +20,19 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Tooltip {...(args as React.ComponentProps<typeof Tooltip>)} />;
+    return (
+      <TooltipProvider delayDuration={0}>
+        <Tooltip defaultOpen {...(args as React.ComponentProps<typeof Tooltip>)}>
+          <TooltipTrigger asChild>
+            <button className="border-2 border-ink bg-card px-3 py-2 font-display uppercase shadow-panel">
+              Hover target
+            </button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Tip: This is a tooltip.
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
   },
 };

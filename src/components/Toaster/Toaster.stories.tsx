@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
 import { Toaster } from "./Toaster";
+import { toast } from "@/hooks/use-toast";
+import { Button } from "@/components/Button";
 
 const meta = {
   component: Toaster,
@@ -20,6 +22,22 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Toaster {...(args as React.ComponentProps<typeof Toaster>)} />;
+    return (
+      <>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => {
+            toast({
+              title: "Saved",
+              description: "Your panel layout was updated.",
+            });
+          }}
+        >
+          Show toast
+        </Button>
+        <Toaster {...(args as React.ComponentProps<typeof Toaster>)} />
+      </>
+    );
   },
 };

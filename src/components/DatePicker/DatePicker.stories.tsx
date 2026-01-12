@@ -20,6 +20,15 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <DatePicker {...(args as React.ComponentProps<typeof DatePicker>)} />;
+    const [value, setValue] = React.useState<Date | undefined>(new Date());
+    return (
+      <div className="w-[320px]">
+        <DatePicker
+          value={value}
+          onValueChange={setValue}
+          {...(args as React.ComponentProps<typeof DatePicker>)}
+        />
+      </div>
+    );
   },
 };

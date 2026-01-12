@@ -20,6 +20,24 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Separator {...(args as React.ComponentProps<typeof Separator>)} />;
+    return (
+      <div className="flex flex-col gap-6 w-[360px]">
+        <div className="rounded-md border-2 border-ink bg-card p-4 shadow-panel">
+          <div className="font-display">Section A</div>
+          <Separator className="my-3" {...(args as React.ComponentProps<typeof Separator>)} />
+          <div className="font-display">Section B</div>
+        </div>
+
+        <div className="flex items-stretch justify-between rounded-md border-2 border-ink bg-card p-4 shadow-panel">
+          <div className="font-display">Left</div>
+          <Separator
+            orientation="vertical"
+            className="mx-4"
+            {...(args as React.ComponentProps<typeof Separator>)}
+          />
+          <div className="font-display">Right</div>
+        </div>
+      </div>
+    );
   },
 };

@@ -20,6 +20,14 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Progress {...(args as React.ComponentProps<typeof Progress>)} />;
+    return (
+      <div className="w-[360px] space-y-3">
+        <div className="flex items-center justify-between font-body text-sm">
+          <span>Loading</span>
+          <span className="text-muted-foreground">65%</span>
+        </div>
+        <Progress value={65} {...(args as React.ComponentProps<typeof Progress>)} />
+      </div>
+    );
   },
 };

@@ -20,6 +20,12 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <SpeechBubble {...(args as React.ComponentProps<typeof SpeechBubble>)} />;
+    return (
+      <div className="w-[360px]">
+        <SpeechBubble variant="speech" tailPosition="bottom-left" {...(args as React.ComponentProps<typeof SpeechBubble>)}>
+          Holy types, Brock — this bubble actually has text now.
+        </SpeechBubble>
+      </div>
+    );
   },
 };

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
 import { AspectRatio } from "./AspectRatio";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const meta = {
   component: AspectRatio,
@@ -20,6 +21,16 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <AspectRatio {...(args as React.ComponentProps<typeof AspectRatio>)} />;
+    return (
+      <div className="w-[360px]">
+        <AspectRatio ratio={16 / 9} {...(args as React.ComponentProps<typeof AspectRatio>)}>
+          <img
+            src={heroBg}
+            alt="Example content inside AspectRatio"
+            className="h-full w-full rounded-md object-cover"
+          />
+        </AspectRatio>
+      </div>
+    );
   },
 };

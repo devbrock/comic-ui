@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { DataTable } from "./DataTable";
 
@@ -20,6 +21,34 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <DataTable {...(args as React.ComponentProps<typeof DataTable>)} />;
+    type Row = {
+      name: string;
+      role: string;
+      issues: number;
+    };
+
+    const columns: Array<ColumnDef<Row, string | number>> = [
+      { accessorKey: "name", header: "Name" },
+      { accessorKey: "role", header: "Role" },
+      { accessorKey: "issues", header: "Open Issues" },
+    ];
+
+    const data: Row[] = [
+      { name: "Brock", role: "Editor-in-Chief", issues: 3 },
+      { name: "Chuck", role: "Senior TS Dev", issues: 7 },
+      { name: "Kit", role: "Colorist", issues: 1 },
+    ];
+
+    return (
+      <div className="w-[720px] max-w-full">
+        <DataTable
+          columns={columns}
+          data={data}
+          filterColumnId="name"
+          filterPlaceholder="Filter by name..."
+          {...(args as React.ComponentProps<typeof DataTable>)}
+        />
+      </div>
+    );
   },
 };

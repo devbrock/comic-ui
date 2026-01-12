@@ -20,6 +20,11 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Spinner {...(args as React.ComponentProps<typeof Spinner>)} />;
+    return (
+      <div className="flex items-center gap-3 font-body text-sm">
+        <Spinner size={20} {...(args as React.ComponentProps<typeof Spinner>)} />
+        <span>Loading…</span>
+      </div>
+    );
   },
 };

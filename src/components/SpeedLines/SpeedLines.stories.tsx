@@ -20,6 +20,16 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <SpeedLines {...(args as React.ComponentProps<typeof SpeedLines>)} />;
+    return (
+      <div className="relative h-[200px] w-[360px] overflow-hidden rounded-md border-2 border-ink bg-hero-yellow/20 shadow-panel">
+        <SpeedLines direction="radial" intensity="medium" animated {...(args as React.ComponentProps<typeof SpeedLines>)} />
+        <div className="relative z-10 p-4">
+          <div className="font-display text-xl uppercase">Zoom!</div>
+          <div className="mt-1 font-body text-sm text-muted-foreground">
+            Speed lines are absolute-positioned, so they need a sized container.
+          </div>
+        </div>
+      </div>
+    );
   },
 };

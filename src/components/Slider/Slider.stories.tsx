@@ -20,6 +20,17 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Slider {...(args as React.ComponentProps<typeof Slider>)} />;
+    return (
+      <div className="w-[360px] space-y-3">
+        <div className="font-body text-sm text-muted-foreground">Drag the thumb</div>
+        <Slider
+          defaultValue={[50]}
+          max={100}
+          step={1}
+          className="w-full"
+          {...(args as React.ComponentProps<typeof Slider>)}
+        />
+      </div>
+    );
   },
 };

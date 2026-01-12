@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import { InputOTP } from "./InputOTP";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "./InputOTP";
 
 const meta = {
   component: InputOTP,
@@ -20,6 +20,14 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <InputOTP {...(args as React.ComponentProps<typeof InputOTP>)} />;
+    return (
+      <InputOTP maxLength={6} {...(args as React.ComponentProps<typeof InputOTP>)}>
+        <InputOTPGroup>
+          {Array.from({ length: 6 }, (_, i) => (
+            <InputOTPSlot key={i} index={i} />
+          ))}
+        </InputOTPGroup>
+      </InputOTP>
+    );
   },
 };

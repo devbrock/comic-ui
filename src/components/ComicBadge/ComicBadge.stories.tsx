@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
+import { Star } from "lucide-react";
 
 import { ComicBadge } from "./ComicBadge";
 
@@ -20,6 +21,15 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <ComicBadge {...(args as React.ComponentProps<typeof ComicBadge>)} />;
+    return (
+      <ComicBadge
+        variant="burst"
+        color="gamma"
+        iconBefore={<Star />}
+        {...(args as React.ComponentProps<typeof ComicBadge>)}
+      >
+        Featured
+      </ComicBadge>
+    );
   },
 };

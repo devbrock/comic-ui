@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import { SonnerToaster } from "./Sonner";
+import { SonnerToaster, sonnerToast } from "./Sonner";
+import { Button } from "@/components/Button";
 
 const meta = {
   component: SonnerToaster,
@@ -20,6 +21,21 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <SonnerToaster {...(args as React.ComponentProps<typeof SonnerToaster>)} />;
+    return (
+      <>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => {
+            sonnerToast("Issue saved", {
+              description: "Your changes were published.",
+            });
+          }}
+        >
+          Show toast
+        </Button>
+        <SonnerToaster {...(args as React.ComponentProps<typeof SonnerToaster>)} />
+      </>
+    );
   },
 };

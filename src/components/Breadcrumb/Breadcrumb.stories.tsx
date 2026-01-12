@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 
-import { Breadcrumb } from "./Breadcrumb";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./Breadcrumb";
 
 const meta = {
   component: Breadcrumb,
@@ -20,6 +27,26 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Breadcrumb {...(args as React.ComponentProps<typeof Breadcrumb>)} />;
+    return (
+      <Breadcrumb {...(args as React.ComponentProps<typeof Breadcrumb>)}>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="#" onClick={(e) => e.preventDefault()}>
+              Home
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="#" onClick={(e) => e.preventDefault()}>
+              Library
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Issue #1</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    );
   },
 };

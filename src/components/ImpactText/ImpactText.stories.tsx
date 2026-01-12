@@ -20,6 +20,10 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <ImpactText {...(args as React.ComponentProps<typeof ImpactText>)} />;
+    return (
+      <ImpactText preset="pow" {...(args as React.ComponentProps<typeof ImpactText>)}>
+        POW!
+      </ImpactText>
+    );
   },
 };

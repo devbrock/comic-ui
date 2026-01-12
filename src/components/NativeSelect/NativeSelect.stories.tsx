@@ -20,6 +20,15 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <NativeSelect {...(args as React.ComponentProps<typeof NativeSelect>)} />;
+    return (
+      <div className="w-[360px] space-y-2">
+        <div className="font-body text-sm text-muted-foreground">Pick a flavor</div>
+        <NativeSelect defaultValue="cherry" {...(args as React.ComponentProps<typeof NativeSelect>)}>
+          <option value="cherry">Cherry</option>
+          <option value="cola">Cola</option>
+          <option value="grape">Grape</option>
+        </NativeSelect>
+      </div>
+    );
   },
 };

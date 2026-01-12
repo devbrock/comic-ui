@@ -20,6 +20,10 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <Link {...(args as React.ComponentProps<typeof Link>)} />;
+    return (
+      <Link href="#" onClick={(e) => e.preventDefault()} {...(args as React.ComponentProps<typeof Link>)}>
+        Read the next issue
+      </Link>
+    );
   },
 };

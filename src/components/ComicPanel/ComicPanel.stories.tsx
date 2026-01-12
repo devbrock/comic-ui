@@ -20,6 +20,18 @@ export const Playground: Story = {
   argTypes: {
   },
   render: (args) => {
-    return <ComicPanel {...(args as React.ComponentProps<typeof ComicPanel>)} />;
+    return (
+      <ComicPanel
+        variant="action"
+        cornerLabel="NEW"
+        headerLabel="Comic Panel"
+        className="w-[420px]"
+        {...(args as React.ComponentProps<typeof ComicPanel>)}
+      >
+        <div className="font-body text-sm text-muted-foreground">
+          Panels need content to feel “alive”.
+        </div>
+      </ComicPanel>
+    );
   },
 };
