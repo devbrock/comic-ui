@@ -35,6 +35,23 @@ type SidebarContext = {
 
 const SidebarContext = React.createContext<SidebarContext | null>(null);
 
+type AccessibleNameProps =
+  | {
+      /**
+       * Accessible name for icon-only buttons.
+       *
+       * Tip: Think of this like the “speech bubble” a screen reader hears.
+       */
+      "aria-label": string;
+      "aria-labelledby"?: string;
+    }
+  | {
+      "aria-label"?: string;
+      "aria-labelledby": string;
+    };
+
+type WithAccessibleName<TProps> = TProps & AccessibleNameProps;
+
 function useSidebar() {
   const context = React.useContext(SidebarContext);
   if (!context) {
@@ -373,7 +390,7 @@ const SidebarGroupLabel = React.forwardRef<
 );
 SidebarGroupLabel.displayName = "SidebarGroupLabel";
 
-type SidebarGroupActionProps = { asChild?: boolean } & React.ComponentPropsWithoutRef<"button">;
+type SidebarGroupActionProps = WithAccessibleName<{ asChild?: boolean } & React.ComponentPropsWithoutRef<"button">>;
 const SidebarGroupAction = React.forwardRef<HTMLButtonElement, SidebarGroupActionProps>(
   ({ className, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
@@ -479,7 +496,7 @@ SidebarMenuButton.displayName = "SidebarMenuButton";
 
 const SidebarMenuAction = React.forwardRef<
   HTMLButtonElement,
-  { asChild?: boolean; showOnHover?: boolean } & React.ComponentPropsWithoutRef<"button">
+  WithAccessibleName<{ asChild?: boolean; showOnHover?: boolean } & React.ComponentPropsWithoutRef<"button">>
 >(({ className, asChild = false, showOnHover = false, ...props }, ref) => {
   const Comp = asChild ? Slot : "button";
 

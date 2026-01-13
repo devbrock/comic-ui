@@ -40,7 +40,38 @@ export interface FieldOwnProps {
  * surface them at the top of JSX IntelliSense (instead of burying them beneath
  * hundreds of HTML attributes).
  */
-export type FieldProps = FieldOwnProps & React.ComponentPropsWithoutRef<"div">;
+type FieldBaseProps = Omit<FieldOwnProps, "label" | "htmlFor"> & React.ComponentPropsWithoutRef<"div">;
+
+/**
+ * `Field` prop rules:
+ * - If you provide a `label`, you must provide `htmlFor` so the label is correctly associated.
+ * - `Field` will attempt to attach `id` / `aria-describedby` / `aria-invalid` to the **single**
+ *   child control, when possible.
+ */
+export type FieldProps =
+  | (FieldBaseProps & { label?: undefined; htmlFor?: string })
+  | (FieldBaseProps & { label: React.ReactNode; htmlFor: string });
+
+type FieldControlAriaProps = {
+  id?: string;
+  "aria-describedby"?: string;
+  "aria-invalid"?: boolean | "true" | "false";
+  "aria-required"?: boolean | "true" | "false";
+  "aria-errormessage"?: string;
+};
+
+function mergeAriaDescribedBy(existing: string | undefined, next: string | undefined) {
+  if (!existing) {
+    return next;
+  }
+
+  if (!next) {
+    return existing;
+  }
+
+  const tokens = new Set([...existing.split(/\s+/), ...next.split(/\s+/)].filter(Boolean));
+  return Array.from(tokens).join(" ");
+}
 
 /**
  * Simple form field wrapper (label + control slot + description/error).
@@ -54,7 +85,24 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
     const errorId = React.useId();
 
     const hasError = Boolean(error);
-    const describedBy = hasError ? errorId : description ? descriptionId : undefined;
+
+    const describedBy = [description ? descriptionId : undefined, hasError ? errorId : undefined]
+      .filter(Boolean)
+      .join(" ");
+
+    const childCount = React.Children.count(children);
+    const onlyChild = childCount === 1 ? (React.Children.only(children) as React.ReactNode) : null;
+    const control = React.isValidElement(onlyChild) ? (onlyChild as React.ReactElement<FieldControlAriaProps>) : null;
+
+    const controlWithAria = control
+      ? React.cloneElement(control, {
+          id: control.props.id ?? htmlFor,
+          "aria-describedby": mergeAriaDescribedBy(control.props["aria-describedby"], describedBy || undefined),
+          "aria-invalid": hasError ? true : control.props["aria-invalid"],
+          "aria-required": required ? true : control.props["aria-required"],
+          "aria-errormessage": hasError ? errorId : control.props["aria-errormessage"],
+        })
+      : null;
 
     return (
       <div ref={ref} className={cn("space-y-2", className)} {...props}>
@@ -65,7 +113,7 @@ const Field = React.forwardRef<HTMLDivElement, FieldProps>(
           </Label>
         ) : null}
 
-        <div aria-describedby={describedBy}>{children}</div>
+        <div>{controlWithAria ?? children}</div>
 
         {hasError ? (
           <p id={errorId} className="text-sm text-destructive font-body">

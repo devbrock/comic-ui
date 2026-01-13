@@ -40,6 +40,7 @@ const SelectScrollUpButton = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.ScrollUpButton
     ref={ref}
+    aria-label={props["aria-label"] ?? (props["aria-labelledby"] ? undefined : "Scroll up")}
     className={cn("flex cursor-default items-center justify-center py-1", className)}
     {...props}
   >
@@ -54,6 +55,7 @@ const SelectScrollDownButton = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.ScrollDownButton
     ref={ref}
+    aria-label={props["aria-label"] ?? (props["aria-labelledby"] ? undefined : "Scroll down")}
     className={cn("flex cursor-default items-center justify-center py-1", className)}
     {...props}
   >

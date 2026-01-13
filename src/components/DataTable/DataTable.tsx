@@ -105,6 +105,7 @@ export function DataTable<TData, TValue>({
       {filterColumnId ? (
         <div className="flex items-center gap-2">
           <Input
+            aria-label={filterPlaceholder}
             placeholder={filterPlaceholder}
             value={filterValue ?? ""}
             onChange={(e) => table.getColumn(filterColumnId)?.setFilterValue(e.target.value)}
