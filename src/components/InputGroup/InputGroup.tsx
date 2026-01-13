@@ -7,7 +7,10 @@ import * as React from "react";
 import { cn } from "@/utils/cn";
 import { Input } from "@/components/Input";
 
-export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement> {}
+/**
+ * Full props for `InputGroup`.
+ */
+export type InputGroupProps = React.ComponentPropsWithoutRef<"div">;
 
 /**
  * Groups inputs with leading/trailing addons (icons/text).
@@ -24,7 +27,10 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(({ classNam
 ));
 InputGroup.displayName = "InputGroup";
 
-export interface InputGroupAddonProps extends React.HTMLAttributes<HTMLSpanElement> {}
+/**
+ * Full props for `InputGroupAddon`.
+ */
+export type InputGroupAddonProps = React.ComponentPropsWithoutRef<"span">;
 
 const InputGroupAddon = React.forwardRef<HTMLSpanElement, InputGroupAddonProps>(({ className, ...props }, ref) => (
   <span
@@ -36,13 +42,25 @@ const InputGroupAddon = React.forwardRef<HTMLSpanElement, InputGroupAddonProps>(
 ));
 InputGroupAddon.displayName = "InputGroupAddon";
 
-export interface InputGroupInputProps extends InputProps {
+/**
+ * Props specific to `InputGroupInput` (shown first in IntelliSense).
+ */
+export interface InputGroupInputOwnProps {
   /**
    * Adjusts rounding/borders when used inside an `InputGroup`.
    * @default "middle"
    */
   position?: "left" | "middle" | "right";
 }
+
+/**
+ * Full props for `InputGroupInput`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of native input attributes).
+ */
+export type InputGroupInputProps = InputGroupInputOwnProps & InputProps;
 
 const InputGroupInput = React.forwardRef<HTMLInputElement, InputGroupInputProps>(
   ({ className, position = "middle", ...props }, ref) => {

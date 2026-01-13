@@ -7,13 +7,25 @@ import { Loader2 } from "lucide-react";
 
 import { cn } from "@/utils/cn";
 
-export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
+/**
+ * Props specific to `Spinner` (shown first in IntelliSense).
+ */
+export interface SpinnerOwnProps {
   /**
    * Pixel size of the spinner icon.
    * @default 16
    */
   size?: number;
 }
+
+/**
+ * Full props for `Spinner`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+export type SpinnerProps = SpinnerOwnProps & React.ComponentPropsWithoutRef<"span">;
 
 /**
  * Simple loading spinner.

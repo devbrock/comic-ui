@@ -6,7 +6,10 @@ import * as React from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {}
+/**
+ * Full props for `ButtonGroup`.
+ */
+export type ButtonGroupProps = React.ComponentPropsWithoutRef<"div">;
 
 /**
  * Groups multiple buttons into a single segmented control.

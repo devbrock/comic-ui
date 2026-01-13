@@ -14,9 +14,24 @@ const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariant
   variant: "default",
 });
 
+/**
+ * Props specific to `ToggleGroup` (shown first in IntelliSense).
+ */
+type ToggleGroupOwnProps = VariantProps<typeof toggleVariants>;
+
+/**
+ * Full props for `ToggleGroup`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * Radix/HTML props).
+ */
+type ToggleGroupRootProps = ToggleGroupOwnProps &
+  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root>;
+
 const ToggleGroup = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof toggleVariants>
+  ToggleGroupRootProps
 >(({ className, variant, size, children, ...props }, ref) => (
   <ToggleGroupPrimitive.Root ref={ref} className={cn("flex items-center justify-center gap-1", className)} {...props}>
     <ToggleGroupContext.Provider value={{ variant, size }}>{children}</ToggleGroupContext.Provider>
@@ -25,9 +40,24 @@ const ToggleGroup = React.forwardRef<
 
 ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName;
 
+/**
+ * Props specific to `ToggleGroupItem` (shown first in IntelliSense).
+ */
+type ToggleGroupItemOwnProps = VariantProps<typeof toggleVariants>;
+
+/**
+ * Full props for `ToggleGroupItem`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * Radix/HTML props).
+ */
+type ToggleGroupItemProps = ToggleGroupItemOwnProps &
+  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item>;
+
 const ToggleGroupItem = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> & VariantProps<typeof toggleVariants>
+  ToggleGroupItemProps
 >(({ className, children, variant, size, ...props }, ref) => {
   const context = React.useContext(ToggleGroupContext);
 

@@ -21,7 +21,10 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/Table";
 
-export interface DataTableProps<TData, TValue> extends React.HTMLAttributes<HTMLDivElement> {
+/**
+ * Props specific to `DataTable` (shown first in IntelliSense).
+ */
+export interface DataTableOwnProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   /**
@@ -30,6 +33,16 @@ export interface DataTableProps<TData, TValue> extends React.HTMLAttributes<HTML
   filterColumnId?: string;
   filterPlaceholder?: string;
 }
+
+/**
+ * Full props for `DataTable`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+export type DataTableProps<TData, TValue> = DataTableOwnProps<TData, TValue> &
+  React.ComponentPropsWithoutRef<"div">;
 
 function DataTableColumnHeader({
   title,

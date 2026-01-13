@@ -22,9 +22,23 @@ const alertVariants = cva(
   },
 );
 
+/**
+ * Props specific to `Alert` (shown first in IntelliSense).
+ */
+type AlertOwnProps = VariantProps<typeof alertVariants>;
+
+/**
+ * Full props for `Alert`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+type AlertProps = AlertOwnProps & React.ComponentPropsWithoutRef<"div">;
+
 const Alert = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
+  AlertProps
 >(({ className, variant, ...props }, ref) => (
   <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props} />
 ));

@@ -41,9 +41,24 @@ const toastVariants = cva(
   },
 );
 
+/**
+ * Props specific to `Toast` (shown first in IntelliSense).
+ */
+type ToastOwnProps = VariantProps<typeof toastVariants>;
+
+/**
+ * Full props for `Toast`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * Radix/HTML props).
+ */
+type ToastRootProps = ToastOwnProps &
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>;
+
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>
+  ToastRootProps
 >(({ className, variant, ...props }, ref) => {
   return <ToastPrimitives.Root ref={ref} className={cn(toastVariants({ variant }), className)} {...props} />;
 });

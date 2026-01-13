@@ -7,7 +7,10 @@ import * as React from "react";
 import { cn } from "@/utils/cn";
 import { Label } from "@/components/Label";
 
-export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
+/**
+ * Props specific to `Field` (shown first in IntelliSense).
+ */
+export interface FieldOwnProps {
   /**
    * Label content shown above the field.
    */
@@ -29,6 +32,15 @@ export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   required?: boolean;
 }
+
+/**
+ * Full props for `Field`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+export type FieldProps = FieldOwnProps & React.ComponentPropsWithoutRef<"div">;
 
 /**
  * Simple form field wrapper (label + control slot + description/error).

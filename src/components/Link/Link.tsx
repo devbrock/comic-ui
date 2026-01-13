@@ -28,8 +28,10 @@ export type LinkState = Readonly<{
 
 export type LinkClassName = string | ((state: LinkState) => string);
 
-export interface LinkProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "className"> {
+/**
+ * Props specific to `Link` (shown first in IntelliSense).
+ */
+export interface LinkOwnProps {
   /**
    * When true, renders a Radix `Slot` so you can pass a router link component as the child.
    */
@@ -52,6 +54,16 @@ export interface LinkProps
   activeClassName?: string;
   pendingClassName?: string;
 }
+
+/**
+ * Full props for `Link`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of native anchor attributes).
+ */
+export type LinkProps = LinkOwnProps &
+  Omit<React.ComponentPropsWithoutRef<"a">, "className">;
 
 export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   (

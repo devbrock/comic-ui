@@ -5,7 +5,10 @@
 import * as React from "react";
 import { cn } from "@/utils/cn";
 
-export type ComicPanelProps = React.HTMLAttributes<HTMLDivElement> & {
+/**
+ * Props specific to `ComicPanel` (shown first in IntelliSense).
+ */
+export interface ComicPanelOwnProps {
   /**
    * Visual treatment of the panel border/shadow.
    */
@@ -18,7 +21,17 @@ export type ComicPanelProps = React.HTMLAttributes<HTMLDivElement> & {
    * Optional header strip rendered across the top.
    */
   headerLabel?: string;
-};
+}
+
+/**
+ * Full props for `ComicPanel`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+export type ComicPanelProps = ComicPanelOwnProps &
+  React.ComponentPropsWithoutRef<"div">;
 
 export function ComicPanel({
   className,

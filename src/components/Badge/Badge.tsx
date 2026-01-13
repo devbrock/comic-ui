@@ -24,7 +24,19 @@ const badgeVariants = cva(
   },
 );
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
+/**
+ * Props specific to `Badge` (shown first in IntelliSense).
+ */
+export interface BadgeOwnProps extends VariantProps<typeof badgeVariants> {}
+
+/**
+ * Full props for `Badge`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+export type BadgeProps = BadgeOwnProps & React.ComponentPropsWithoutRef<"div">;
 
 function Badge({ className, variant, ...props }: BadgeProps) {
   return <div className={cn(badgeVariants({ variant }), className)} {...props} />;

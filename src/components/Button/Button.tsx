@@ -54,11 +54,24 @@ const buttonVariants = cva(
   }
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+/**
+ * Props specific to `Button` (shown first in IntelliSense).
+ */
+export interface ButtonOwnProps extends VariantProps<typeof buttonVariants> {
+  /**
+   * When true, renders a Radix `Slot` so you can pass another component as the child.
+   */
   asChild?: boolean;
 }
+
+/**
+ * Full props for `Button`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of native button attributes).
+ */
+export type ButtonProps = ButtonOwnProps & React.ComponentPropsWithoutRef<"button">;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {

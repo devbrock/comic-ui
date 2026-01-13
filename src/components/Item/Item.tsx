@@ -6,7 +6,10 @@ import * as React from "react";
 
 import { cn } from "@/utils/cn";
 
-export interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {}
+/**
+ * Full props for `Item`.
+ */
+export type ItemProps = React.ComponentPropsWithoutRef<"div">;
 
 /**
  * A simple list "item card" used for compact data display.
@@ -23,13 +26,19 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(({ className, ...props 
 ));
 Item.displayName = "Item";
 
-export interface ItemTitleProps extends React.HTMLAttributes<HTMLDivElement> {}
+/**
+ * Full props for `ItemTitle`.
+ */
+export type ItemTitleProps = React.ComponentPropsWithoutRef<"div">;
 const ItemTitle = React.forwardRef<HTMLDivElement, ItemTitleProps>(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("font-display text-base", className)} {...props} />
 ));
 ItemTitle.displayName = "ItemTitle";
 
-export interface ItemDescriptionProps extends React.HTMLAttributes<HTMLDivElement> {}
+/**
+ * Full props for `ItemDescription`.
+ */
+export type ItemDescriptionProps = React.ComponentPropsWithoutRef<"div">;
 const ItemDescription = React.forwardRef<HTMLDivElement, ItemDescriptionProps>(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("font-body text-sm text-muted-foreground", className)} {...props} />
 ));

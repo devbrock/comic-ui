@@ -29,9 +29,24 @@ const toggleVariants = cva(
   },
 );
 
+/**
+ * Props specific to `Toggle` (shown first in IntelliSense).
+ */
+type ToggleOwnProps = VariantProps<typeof toggleVariants>;
+
+/**
+ * Full props for `Toggle`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * Radix/HTML props).
+ */
+type ToggleProps = ToggleOwnProps &
+  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>;
+
 const Toggle = React.forwardRef<
   React.ElementRef<typeof TogglePrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>
+  ToggleProps
 >(({ className, variant, size, ...props }, ref) => (
   <TogglePrimitive.Root ref={ref} className={cn(toggleVariants({ variant, size, className }))} {...props} />
 ));
