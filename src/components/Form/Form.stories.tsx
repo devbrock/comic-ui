@@ -17,49 +17,52 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+type PlaygroundFormValues = Readonly<{ email: string }>;
+
+function FormPlayground() {
+  const form = useForm<PlaygroundFormValues>({
+    defaultValues: { email: "" },
+    mode: "onChange",
+  });
+
+  return (
+    <div className="w-[420px] rounded-md border-2 border-ink bg-card p-4 shadow-panel">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(() => {
+            // no-op: story demo
+          })}
+          className="space-y-4"
+        >
+          <FormField
+            control={form.control}
+            name="email"
+            rules={{
+              required: "Email is required.",
+            }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="brock@example.com" {...field} />
+                </FormControl>
+                <FormDescription>We’ll never share your email.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    </div>
+  );
+}
+
 export const Playground: Story = {
   args: {
   },
   argTypes: {
   },
-  render: (args) => {
-    type Values = { email: string };
-    const form = useForm<Values>({
-      defaultValues: { email: "" },
-      mode: "onChange",
-    });
-
-    return (
-      <div className="w-[420px] rounded-md border-2 border-ink bg-card p-4 shadow-panel">
-        <Form {...form} {...(args as React.ComponentProps<typeof Form>)}>
-          <form
-            onSubmit={form.handleSubmit(() => {
-              // no-op: story demo
-            })}
-            className="space-y-4"
-          >
-            <FormField
-              control={form.control}
-              name="email"
-              rules={{
-                required: "Email is required.",
-              }}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="brock@example.com" {...field} />
-                  </FormControl>
-                  <FormDescription>We’ll never share your email.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button type="submit">Submit</Button>
-          </form>
-        </Form>
-      </div>
-    );
-  },
+  render: () => <FormPlayground />,
 };

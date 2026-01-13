@@ -22,6 +22,29 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+type ToastVariant = "default" | "destructive";
+
+function ToastPlayground(props: { variant: ToastVariant }) {
+  const { variant } = props;
+  const [open, setOpen] = React.useState(true);
+
+  return (
+    <ToastProvider>
+      <button className="border px-3 py-2" onClick={() => setOpen(true)}>
+        Show toast
+      </button>
+      <Toast open={open} onOpenChange={setOpen} variant={variant}>
+        <div className="grid gap-1">
+          <ToastTitle>Scheduled</ToastTitle>
+          <ToastDescription>Your meeting is set for 3pm.</ToastDescription>
+        </div>
+        <ToastClose />
+      </Toast>
+      <ToastViewport />
+    </ToastProvider>
+  );
+}
+
 export const Playground: Story = {
   args: {
     variant: "default",
@@ -29,24 +52,7 @@ export const Playground: Story = {
   argTypes: {
     variant: { control: "radio", options: ["default", "destructive"] },
   },
-  render: (args) => {
-    const [open, setOpen] = React.useState(true);
-    return (
-      <ToastProvider>
-        <button className="border px-3 py-2" onClick={() => setOpen(true)}>
-          Show toast
-        </button>
-        <Toast open={open} onOpenChange={setOpen} variant={args.variant}>
-          <div className="grid gap-1">
-            <ToastTitle>Scheduled</ToastTitle>
-            <ToastDescription>Your meeting is set for 3pm.</ToastDescription>
-          </div>
-          <ToastClose />
-        </Toast>
-        <ToastViewport />
-      </ToastProvider>
-    );
-  },
+  render: (args) => <ToastPlayground variant={args.variant as ToastVariant} />,
 };
 
 export const AllVariants: Story = {

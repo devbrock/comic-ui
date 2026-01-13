@@ -19,7 +19,7 @@ export const Playground: Story = {
   },
   argTypes: {
   },
-  render: (args) => {
+  render: () => {
     return (
       <Card className="w-[420px]">
         <CardHeader>

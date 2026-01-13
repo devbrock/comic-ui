@@ -581,6 +581,7 @@ function createInitialTickets(): DashboardTicket[] {
     updated.setHours(updated.getHours() + 6);
 
     const { ageDays: _ageDays, ...rest } = partial;
+    void _ageDays;
     return {
       id: createDashboardId("tkt"),
       createdAtIso: iso(created),

@@ -16,7 +16,7 @@ import { cn } from "@/utils/cn";
  * We intentionally widen the public type here so generated `.d.ts` files stay
  * portable for consumers.
  */
-const MenubarMenu: React.ComponentType<React.PropsWithChildren<{}>> =
+const MenubarMenu: React.ComponentType<React.PropsWithChildren<Record<string, never>>> =
   MenubarPrimitive.Menu;
 
 const MenubarGroup = MenubarPrimitive.Group;

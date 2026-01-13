@@ -27,7 +27,7 @@ const badgeVariants = cva(
 /**
  * Props specific to `Badge` (shown first in IntelliSense).
  */
-export interface BadgeOwnProps extends VariantProps<typeof badgeVariants> {}
+export type BadgeOwnProps = VariantProps<typeof badgeVariants>;
 
 /**
  * Full props for `Badge`.

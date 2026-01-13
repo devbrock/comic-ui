@@ -19,7 +19,7 @@ export const Playground: Story = {
   },
   argTypes: {
   },
-  render: (args) => {
+  render: () => {
     return (
       <Dialog defaultOpen>
         <DialogTrigger asChild>

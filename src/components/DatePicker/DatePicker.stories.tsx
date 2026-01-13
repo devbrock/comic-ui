@@ -14,21 +14,19 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+function DatePickerPlayground() {
+  const [value, setValue] = React.useState<Date | undefined>(new Date());
+  return (
+    <div className="w-[320px]">
+      <DatePicker value={value} onValueChange={setValue} />
+    </div>
+  );
+}
+
 export const Playground: Story = {
   args: {
   },
   argTypes: {
   },
-  render: (args) => {
-    const [value, setValue] = React.useState<Date | undefined>(new Date());
-    return (
-      <div className="w-[320px]">
-        <DatePicker
-          value={value}
-          onValueChange={setValue}
-          {...(args as React.ComponentProps<typeof DatePicker>)}
-        />
-      </div>
-    );
-  },
+  render: () => <DatePickerPlayground />,
 };

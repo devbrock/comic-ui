@@ -19,7 +19,7 @@ export const Playground: Story = {
   },
   argTypes: {
   },
-  render: (args) => {
+  render: () => {
     return (
       <Tabs defaultValue="account" className="w-[400px]">
         <TabsList>

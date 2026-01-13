@@ -9,7 +9,8 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  // Ignore build artifacts + archived source snapshot.
+  globalIgnores(['dist', 'original_version']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -21,6 +22,11 @@ export default defineConfig([
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+    },
+    rules: {
+      // This rule is optimized for app fast-refresh workflows. In a component library,
+      // barrel exports (`export *`) are normal and the rule can't reliably analyze them.
+      'react-refresh/only-export-components': 'off',
     },
   },
 ])

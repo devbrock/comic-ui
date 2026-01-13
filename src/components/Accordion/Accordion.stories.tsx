@@ -19,7 +19,7 @@ export const Playground: Story = {
   },
   argTypes: {
   },
-  render: (args) => {
+  render: () => {
     return (
       <Accordion type="single" collapsible className="w-[400px]">
         <AccordionItem value="item-1">

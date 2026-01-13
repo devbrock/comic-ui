@@ -19,7 +19,7 @@ export const Playground: Story = {
   },
   argTypes: {
   },
-  render: (args) => {
+  render: () => {
     return (
       <Select defaultValue="apple">
         <SelectTrigger className="w-48">

@@ -234,15 +234,7 @@ import { ExampleCard } from "@/components/demo/ExampleCard";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useForm } from "react-hook-form";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import {
-  Copy,
-  Info,
-  Italic,
-  Shield,
-  Sparkles,
-  Underline,
-  Zap,
-} from "lucide-react";
+import { Info, Italic, Shield, Sparkles, Underline, Zap } from "lucide-react";
 
 function DatePickerPreview() {
   const [value, setValue] = React.useState<Date | undefined>(new Date());
@@ -319,26 +311,30 @@ function FormPreview() {
 function ToastPreview() {
   const { toast: localToast } = useToast();
   return (
-    <div className="flex flex-wrap gap-2">
-      <Button
-        size="sm"
-        onClick={() =>
-          localToast({
-            title: "POW!",
-            description: "This is the Radix toast stack.",
-          })
-        }
-      >
-        Toast
-      </Button>
-      <Button
-        size="sm"
-        variant="outline"
-        onClick={() => sonnerToast("BAM!", { description: "This is Sonner." })}
-      >
-        Sonner
-      </Button>
-    </div>
+    <>
+      <Toaster />
+      <SonnerToaster theme="system" />
+      <div className="flex flex-wrap gap-2">
+        <Button
+          size="sm"
+          onClick={() =>
+            localToast({
+              title: "POW!",
+              description: "This is the Radix toast stack.",
+            })
+          }
+        >
+          Toast
+        </Button>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => sonnerToast("BAM!", { description: "This is Sonner." })}
+        >
+          Sonner
+        </Button>
+      </div>
+    </>
   );
 }
 
