@@ -177,17 +177,6 @@ function HeroSection() {
 function SetupSection() {
   const installCmd = "pnpm add @devbrock/comic-ui";
   const baseStylesImport = `import "@devbrock/comic-ui/styles.css";`;
-  /* @ts-ignore */
-  const tailwindV3Config = `// tailwind.config.ts
-import type { Config } from "tailwindcss";
-
-export default {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@devbrock/comic-ui/dist/**/*.{js,cjs,mjs}",
-  ],
-} satisfies Config;`;
-
   const tailwindV4Css = `@import "tailwindcss";
 @source "../node_modules/@devbrock/comic-ui/dist/**/*.{js,cjs,mjs}";
 @import "@devbrock/comic-ui/styles.css";`;

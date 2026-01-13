@@ -10,6 +10,15 @@ import { cn } from "@/utils/cn";
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const;
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function escapeCssAttributeValue(value: string): string {
+  // Minimal escaping for quoted attribute selectors: https://www.w3.org/TR/selectors-4/#attribute-selectors
+  return value.replaceAll("\\", "\\\\").replaceAll('"', '\\"').replaceAll("\n", "\\A ");
+}
+
 export type ChartConfig = {
   [k in string]: {
     label?: React.ReactNode;
@@ -75,7 +84,7 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
         __html: Object.entries(THEMES)
           .map(
             ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
+${prefix} [data-chart="${escapeCssAttributeValue(id)}"] {
 ${colorConfig
   .map(([key, itemConfig]) => {
     const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] || itemConfig.color;
@@ -280,25 +289,22 @@ ChartLegendContent.displayName = "ChartLegend";
 
 // Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key: string) {
-  if (typeof payload !== "object" || payload === null) {
+  if (!isRecord(payload)) {
     return undefined;
   }
 
-  const payloadPayload =
-    "payload" in payload && typeof payload.payload === "object" && payload.payload !== null
-      ? payload.payload
-      : undefined;
+  const nestedPayload = isRecord(payload.payload) ? payload.payload : undefined;
 
   let configLabelKey: string = key;
 
-  if (key in payload && typeof payload[key as keyof typeof payload] === "string") {
-    configLabelKey = payload[key as keyof typeof payload] as string;
-  } else if (
-    payloadPayload &&
-    key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
-  ) {
-    configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string;
+  const directValue = payload[key];
+  if (typeof directValue === "string") {
+    configLabelKey = directValue;
+  } else if (nestedPayload) {
+    const nestedValue = nestedPayload[key];
+    if (typeof nestedValue === "string") {
+      configLabelKey = nestedValue;
+    }
   }
 
   return configLabelKey in config ? config[configLabelKey] : config[key as keyof typeof config];
