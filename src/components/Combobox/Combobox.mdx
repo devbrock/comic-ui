@@ -28,6 +28,12 @@ import * as Stories from "./Combobox.stories";
 import { Combobox } from "@devbrock/comic-ui";
 
 export function Example() {
-  return <Combobox />;
+  const items = [
+    { value: "spiderman", label: "Spider-Man" },
+    { value: "storm", label: "Storm" },
+  ] as const;
+
+  const [value, setValue] = React.useState<string | undefined>();
+  return <Combobox items={items} value={value} onValueChange={setValue} />;
 }
 ```

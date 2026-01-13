@@ -28,6 +28,7 @@ import * as Stories from "./DatePicker.stories";
 import { DatePicker } from "@devbrock/comic-ui";
 
 export function Example() {
-  return <DatePicker />;
+  const [value, setValue] = React.useState<Date | undefined>();
+  return <DatePicker value={value} onValueChange={setValue} />;
 }
 ```

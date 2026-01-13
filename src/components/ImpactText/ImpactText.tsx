@@ -7,8 +7,14 @@ import { cn } from "@/utils/cn";
 
 type ImpactPreset = "pow" | "bam" | "wham" | "zap" | "boom";
 
-export interface ImpactTextProps {
+type ImpactTextStyleProps = {
   className?: string;
+  color?: "yellow" | "red" | "blue" | "green" | "purple" | "orange";
+  size?: "sm" | "md" | "lg" | "xl";
+  animated?: boolean;
+};
+
+type ImpactTextContentProps = {
   /**
    * The text to display (recommended).
    *
@@ -29,10 +35,22 @@ export interface ImpactTextProps {
    * Previously `variant` was used to select the displayed text.
    */
   variant?: ImpactPreset | "custom";
-  color?: "yellow" | "red" | "blue" | "green" | "purple" | "orange";
-  size?: "sm" | "md" | "lg" | "xl";
-  animated?: boolean;
-}
+};
+
+/**
+ * Props for `ImpactText`.
+ *
+ * At least one content source is required for the component to be meaningful:
+ * `text`, `children`, `preset`, or a legacy `variant` preset (excluding `"custom"`).
+ */
+export type ImpactTextProps = ImpactTextStyleProps &
+  ImpactTextContentProps &
+  (
+    | { text: string }
+    | { children: React.ReactNode }
+    | { preset: ImpactPreset }
+    | { variant: ImpactPreset }
+  );
 
 export function ImpactText({
   className,

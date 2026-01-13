@@ -11,12 +11,30 @@ import { Button } from "@/components/Button";
 import { Calendar } from "@/components/Calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover";
 
-export interface DatePickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+/**
+ * Props specific to `DatePicker` (shown first in IntelliSense).
+ */
+export interface DatePickerOwnProps {
   value?: Date;
-  onValueChange?: (value: Date | undefined) => void;
+  /**
+   * Called when a date is selected/cleared.
+   *
+   * Required for the component to function as a picker (this component is controlled).
+   */
+  onValueChange: (value: Date | undefined) => void;
   placeholder?: string;
   disabled?: boolean;
 }
+
+/**
+ * Full props for `DatePicker`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+export type DatePickerProps = DatePickerOwnProps &
+  Omit<React.ComponentPropsWithoutRef<"div">, "onChange">;
 
 /**
  * Single-date picker (Popover + Calendar).

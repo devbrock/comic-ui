@@ -16,15 +16,33 @@ export interface ComboboxItem {
   disabled?: boolean;
 }
 
-export interface ComboboxProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+/**
+ * Props specific to `Combobox` (shown first in IntelliSense).
+ */
+export interface ComboboxOwnProps {
   items: readonly ComboboxItem[];
   value?: string;
-  onValueChange?: (value: string | undefined) => void;
+  /**
+   * Called when a value is selected/cleared.
+   *
+   * Required for the component to function as a combobox (this component is controlled).
+   */
+  onValueChange: (value: string | undefined) => void;
   placeholder?: string;
   searchPlaceholder?: string;
   emptyText?: string;
   disabled?: boolean;
 }
+
+/**
+ * Full props for `Combobox`.
+ *
+ * Note: We intentionally intersect our own props **first** so editors like VSCode
+ * surface them at the top of JSX IntelliSense (instead of burying them beneath
+ * hundreds of HTML attributes).
+ */
+export type ComboboxProps = ComboboxOwnProps &
+  Omit<React.ComponentPropsWithoutRef<"div">, "onChange">;
 
 /**
  * A shadcn-style combobox built from `Popover` + `Command`.
@@ -75,7 +93,7 @@ function Combobox({
                     disabled={item.disabled}
                     onSelect={() => {
                       const nextValue = item.value === value ? undefined : item.value;
-                      onValueChange?.(nextValue);
+                      onValueChange(nextValue);
                       setOpen(false);
                     }}
                   >
